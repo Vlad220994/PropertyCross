@@ -1,16 +1,16 @@
-.ListedLocation {
+.listed-location {
   margin: 20px auto;
   width: 80%;
-  h2 {
+  .listed-location__heading {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px; 
   }
-  div {
+  .listed-location__block1 {
     border: 2px solid black;
-    ul {
-      li {
-        .location {
+    .listed-location__block2 {
+      .listed-location__block2-location {
+        .listed-location__block2-number {
           padding-left: 20px;
         }
       }

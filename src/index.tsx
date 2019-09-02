@@ -4,4 +4,4 @@ import * as ReactDOM from 'react-dom';
 import App from './components/App/App';
 import './scss/main.scss';
 
-ReactDOM.render ( <App color="Blue" />, document.getElementById("root"));
+ReactDOM.render ( <App />, document.getElementById("root"));

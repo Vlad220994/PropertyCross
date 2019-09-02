@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import './Error.scss';
+import './error.scss';
 
 const Error = () => {
   return(
-    <section className="Error">
-      <h2>There was a problem with your search</h2>
+    <section className="block-error">
+      <h2 className="block-error__heading">There was a problem with your search</h2>
     </section>
   );
 }

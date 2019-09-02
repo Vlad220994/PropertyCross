@@ -1,15 +1,11 @@
-header {
+.header {
   display: flex;
   justify-content: space-around;
   align-items: baseline;
   
-  h1 {
+  .header__heading {
     margin-top: 20px;
     font-weight: bold;
     font-family: 'Oswald', sans-serif;
-  }
-
-  button {
-    margin-top: 20px;
   }
 }

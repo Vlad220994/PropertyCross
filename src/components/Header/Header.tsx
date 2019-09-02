@@ -1,10 +1,11 @@
 import * as React from 'react';
-import './Header.scss';
+
+import './header.scss';
 
 const Header = () => {
   return(
-    <header>
-      <h1>Property Cross</h1>
+    <header className="header">
+      <h1 className="header__heading">Property Cross</h1>
       <input type="button" value="Faves" className="btn btn-primary" />
     </header>
   );

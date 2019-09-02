@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Fragment } from 'react';
 
-import './PropertySearch.scss';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import RecentSearches from '../RecentSearches/RecentSearches';

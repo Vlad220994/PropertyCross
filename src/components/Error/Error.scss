@@ -1,10 +1,10 @@
-.Error {
+.block-error {
   margin: 20px auto;
   width: 80%;
-  h2 {
+
+  .block-error__heading {
     text-align: center;
     font-size: 20px;
     font-weight: bold;
   }
 }
-
