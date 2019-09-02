@@ -1,0 +1,19 @@
+.RecentSearches {
+  margin: 20px auto;
+  width: 80%;
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px; 
+  }
+  div {
+    border: 2px solid black;
+    ul {
+      li {
+        .search {
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+}
