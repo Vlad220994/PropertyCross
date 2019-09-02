@@ -3,6 +3,8 @@ import { createBrowserHistory } from 'history';
 
 import Routes from '../Routes/Routes';
 
-const App = () => <Routes history={createBrowserHistory()} />
+const history = createBrowserHistory();
+
+const App = () => <Routes history={history} />
 
 export default App;
