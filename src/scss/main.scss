@@ -45,12 +45,16 @@ ul, li {
   min-height: 100vh;
   
   h1 {
+    @media screen and (min-width: $desktopWidth) {
+      font-size: 30px;
+    }
+
     @media screen and (max-width: $desktopWidth) {
-      font-size: 20px;
+      font-size: 30px;
     }
     
     @media screen and (max-width: $smPhoneWidth) {
-      font-size: 14px;
+      font-size: 20px;
     }
   }
 }

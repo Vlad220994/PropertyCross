@@ -1,0 +1,19 @@
+.listed-location {
+  margin: 20px auto;
+  width: 80%;
+  .listed-location__heading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px; 
+  }
+  .listed-location__block1 {
+    border: 2px solid black;
+    .listed-location__block2 {
+      .listed-location__block2-location {
+        .listed-location__block2-number {
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.main-block {
+  margin-top: 40px;
+
+  .main-block__block1 {
+    margin: 0 20px 0;
+    text-align: center;
+  }
+
+  .main-block__block2 {
+    margin: 20px auto 0;
+    width: 300px;
+
+    .main-block__block3 {
+      margin-top: 20px; 
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
