@@ -1,15 +1,15 @@
 import * as React from 'react';
 
 import Element from '../Element/Element';
-import './Results.scss';
+import './results.scss';
 
 const Results = () => {
   return(
-    <ul className="list">
-      <li className="list__element">
+    <ul className="results">
+      <li className="results__element">
         <Element />
       </li>
-      <li className="list__element">
+      <li className="results__element">
         <Element />
       </li>
     </ul>

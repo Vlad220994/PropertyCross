@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './NumberOfMatches.scss';
+import './numberOfMatches.scss';
 
 const NumberOfMatches = () => {
   return(

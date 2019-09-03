@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import NumberOfMatches from '../NumberOfMatches/NumberOfMatches';
 import Results from '../Results/Results';
-import './SearchResultsPage.scss';
+import './searchResultsPage.scss';
 
 const SearchResultsPage = () => {
   return(
