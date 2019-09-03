@@ -71,6 +71,11 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    hot: true,
+    historyApiFallback: true,
+    contentBase: './dist'
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'

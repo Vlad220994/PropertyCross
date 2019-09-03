@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .container__image {
+    padding: 10px 0;
+    width: 100px;
+  }
+
+  .container__information {
+    margin-left: 10px;
+    
+    .information__heading {
+      font-size: 30px;
+    }
+  }
+}
