@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 import './recentSearches.scss';
 
-const RecentSearches = ({ cities = [] }) => {
-  
-  const city = cities.map((item,i) => {
+const RecentSearches = ({ cities }) => {
+
+  const city = cities.map((item, i) => {
     
-    const { title } = item;
+    const { title, id } = item;
     
     return(
-      <tr className="recent-searches__list" key={i}>
+      <tr className="recent-searches__list" key={id}>
         <td>
           <span className="recent-searches__search">Search </span>
           <span className="recent-searches__number">#{i+1} </span>
@@ -35,10 +35,8 @@ const RecentSearches = ({ cities = [] }) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    cities: state.searchCityReducer.cities
-  };
-};
+const mapStateToProps = (state) => ({
+  cities: state.searchCityReducer.cities
+});
 
 export default connect(mapStateToProps)(RecentSearches);

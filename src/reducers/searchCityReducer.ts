@@ -1,10 +1,15 @@
-import { SEARCH_CITY } from '../constants/constants';
+import { SEARCH_CITY } from '../constants/constantsForCity';
 
-const initialState = {
+const initialState: {cities: Array<Object>} = {
   cities: []
 };
 
-export const searchCityReducer = (state = initialState, action) => {
+interface Action {
+  type: string,
+  value: Array<Object>
+}
+
+export const searchCityReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case SEARCH_CITY:
       return {

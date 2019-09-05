@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { getLocation } from '../../actions/getLocationAction';
 import './main.scss';
 
-type PropsType = {
+interface PropsType {
   getLocation: (city: string) => void;
 };
 
-type StateType = {
+interface StateType {
   value: string
 }
 

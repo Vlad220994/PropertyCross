@@ -1,4 +1,4 @@
-import { SEARCH_CITY } from '../constants/constants';
+import { SEARCH_CITY } from '../constants/constantsForCity';
 
 export const searchCityAction = (value: Array<Object>) => (
   {
