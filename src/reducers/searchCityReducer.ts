@@ -1,13 +1,14 @@
 import { SEARCH_CITY } from '../constants/constantsForCity';
-
-const initialState: {cities: Array<Object>} = {
-  cities: []
-};
+import { searchCityInterface } from '../interfaces/searchCityInterface';
 
 interface Action {
   type: string,
-  value: Array<Object>
+  value: Array<searchCityInterface>
 }
+
+const initialState: {cities: Array<searchCityInterface>} = {
+  cities: []
+};
 
 export const searchCityReducer = (state = initialState, action: Action) => {
   switch (action.type) {
