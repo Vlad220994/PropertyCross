@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+import Error from '../Error/Error';
 import './recentSearches.scss';
 
-const RecentSearches = ({ cities }) => {
+const RecentSearches = ({ error, cities }) => {
 
-  const city = cities.map((item, i) => {
+  const city = cities.map((item: any, i: number) => {
     
     const { title, id } = item;
     
@@ -19,7 +20,7 @@ const RecentSearches = ({ cities }) => {
           <span className="recent-searches__title">{title}</span>
         </td>
       </tr>
-    )}) ;
+    )});
     
   return(
     <section className="recent-searches">
@@ -27,7 +28,7 @@ const RecentSearches = ({ cities }) => {
       <div className="recent-searches__block1">
         <table className="recent-searches__block2">
           <tbody>
-            {city}
+            { error ? <Error /> : city }
           </tbody>
         </table>
       </div>
@@ -35,8 +36,9 @@ const RecentSearches = ({ cities }) => {
   );
 }
 
-const mapStateToProps = (state) => ({
-  cities: state.searchCityReducer.cities
+const mapStateToProps = (state: any) => ({
+  cities: state.asyncSearchCityReducer.cities,
+  error: state.asyncSearchCityReducer.error
 });
 
 export default connect(mapStateToProps)(RecentSearches);
