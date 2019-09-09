@@ -9,8 +9,8 @@ export const getLocation = (titleCity: string) => {
     fetch(`http://localhost:3000/locations/searchByName?placeName=${titleCity}`)
       .then(dispatch(searchCityStarted()))
       .then(res => res.json())
-      .then(cities => dispatch(searchCitySuccess(cities)))
-      .catch( err => dispatch(searchCityFail(err)))
+      .then(cities => setTimeout(() => dispatch(searchCitySuccess(cities)), 1000))
+      .catch( err => setTimeout(() => dispatch(searchCityFail(err)), 1000))
   } 
 };
 

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+import { Spinner } from '../Spinner/Spinner';
 import Error from '../Error/Error';
 import './recentSearches.scss';
 
-const RecentSearches = ({ error, cities }) => {
+const RecentSearches = ({ cities, loading, error }) => {
 
   const city = cities.map((item: any, i: number) => {
     
@@ -21,14 +22,14 @@ const RecentSearches = ({ error, cities }) => {
         </td>
       </tr>
     )});
-    
+    const result = error ? <Error /> : city;
   return(
     <section className="recent-searches">
-      <h2 className="recent-searches__heading">RecentSearches</h2>
+      <h2 className="recent-searches__heading">Recent Searches</h2>
       <div className="recent-searches__block1">
         <table className="recent-searches__block2">
           <tbody>
-            { error ? <Error /> : city }
+            { loading ? <Spinner /> : result }
           </tbody>
         </table>
       </div>
@@ -38,7 +39,8 @@ const RecentSearches = ({ error, cities }) => {
 
 const mapStateToProps = (state: any) => ({
   cities: state.asyncSearchCityReducer.cities,
-  error: state.asyncSearchCityReducer.error
+  error: state.asyncSearchCityReducer.error,
+  loading: state.asyncSearchCityReducer.loading
 });
 
 export default connect(mapStateToProps)(RecentSearches);

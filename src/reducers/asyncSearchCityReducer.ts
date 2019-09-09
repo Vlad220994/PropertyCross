@@ -11,24 +11,30 @@ interface Action {
   error: string
 }
 
-const initialState: {cities: Array<searchCityInterface>} = {
-  cities: []
+const initialState: {cities: Array<searchCityInterface>, loading: boolean} = {
+  cities: [],
+  loading: false
 };
 
 export const asyncSearchCityReducer = (state = initialState, action: Action) => {
   switch(action.type) {
+    case SEARCH_CITY_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
     case SEARCH_CITY_SUCCESS:
       return {
-        cities: action.payload
+        cities: action.payload,
+        loading: false
       };
-    case SEARCH_CITY_REQUEST:
-      return state;
     case SEARCH_CITY_FAIL:
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
+        loading: false
       };
     default:
-      return state
+      return state;
   }
 };
