@@ -1,7 +1,7 @@
 { 
   "exclude": [
   "node_modules",
-  "dist",
+  "dist"
   ],
   "include": ["./src/**/*"],
   "compilerOptions": {
@@ -22,7 +22,7 @@
     "paths": {
       "components/*": [
         "src/components/*"
-      ],
+      ]
     }
   }
 }

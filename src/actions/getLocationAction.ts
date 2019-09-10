@@ -4,21 +4,11 @@ import {
   SEARCH_CITY_SUCCESS 
 } from '../constants/constantsForCity';
 
-export const getLocation = (titleCity: string) => {
-  return dispatch => {
-    fetch(`http://localhost:3000/locations/searchByName?placeName=${titleCity}`)
-      .then(dispatch(searchCityStarted()))
-      .then(res => res.json())
-      .then(cities => setTimeout(() => dispatch(searchCitySuccess(cities)), 1000))
-      .catch( err => setTimeout(() => dispatch(searchCityFail(err)), 1000))
-  } 
-};
-
 export const searchCityStarted = () => ({
   type: SEARCH_CITY_REQUEST
 })
 
-export const searchCitySuccess = (cities: Array<string>) => ({
+export const searchCitySuccess = (cities: string[]) => ({
   type: SEARCH_CITY_SUCCESS,
   payload: cities
 }); 
@@ -27,3 +17,14 @@ export const searchCityFail = (error: string) => ({
   type: SEARCH_CITY_FAIL,
   payload: error
 }); 
+
+export const searchCityRequest = (titleCity) => {
+  const request = {
+    url: `http://localhost:3000/locations/searchByName?placeName=${titleCity}`,
+  };
+  
+  return {
+    type: "REQUEST",
+    payload: request
+  }
+}

@@ -7,7 +7,7 @@ import './recentSearches.scss';
 
 const RecentSearches = ({ cities, loading, error }) => {
 
-  const city = cities.map((item: any, i: number) => {
+  const city = cities.map((item, i: number) => {
     
     const { title, id } = item;
     
@@ -37,7 +37,7 @@ const RecentSearches = ({ cities, loading, error }) => {
   );
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   cities: state.asyncSearchCityReducer.cities,
   error: state.asyncSearchCityReducer.error,
   loading: state.asyncSearchCityReducer.loading

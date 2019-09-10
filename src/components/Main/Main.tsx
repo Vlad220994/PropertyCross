@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getLocation } from '../../actions/getLocationAction';
+import { searchCityRequest } from '../../actions/getLocationAction';
 import './main.scss';
 
 interface PropsType {
-  getLocation: (city: string) => void;
+  searchCityRequest: (city: string) => void;
 };
 
 interface StateType {
@@ -22,7 +22,7 @@ class Main extends Component<PropsType, StateType> {
   }
 
   onClick = () => {
-    this.props.getLocation(this.state.value);
+    this.props.searchCityRequest(this.state.value);
   }
 
   render() {
@@ -45,7 +45,7 @@ class Main extends Component<PropsType, StateType> {
 }
 
 const mapDispatchToProps = {
-  getLocation,
+  searchCityRequest,
 }
 
 export default connect(null, mapDispatchToProps)(Main);
