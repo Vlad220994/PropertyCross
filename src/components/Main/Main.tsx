@@ -13,7 +13,7 @@ const Main = (props: PropsType) => {
   const [value, setValue] = useState('');
 
   const onChange = ({target}) => setValue(target.value);
-  const onClick = () => props.searchCity(value);
+  const onClick = (value: string) => () => props.searchCity(value);
 
   return(
     <main className="main-block">
@@ -24,7 +24,7 @@ const Main = (props: PropsType) => {
       <div className="main-block__block2">
         <input type="text" className="form-control" placeholder="Location" onChange={onChange} />
         <div className="main-block__block3">
-          <input type="button" value="Go" className="btn btn-primary" onClick={onClick} />
+          <input type="button" value="Go" className="btn btn-primary" onClick={onClick(value)} />
           <input type="button" value="My location" className="btn btn-primary" />
         </div>
       </div>
