@@ -27,7 +27,7 @@ const ListedLocation = ({ cities, loading, error }) => {
 
   return(
     <section className="listed-location">
-      <h2 className="listed-location__heading">Recent Searches</h2>
+      <h2 className="listed-location__heading">Please select a location below</h2>
       <div className="listed-location__block1">
         <table className="listed-location__block2">
           <tbody>
