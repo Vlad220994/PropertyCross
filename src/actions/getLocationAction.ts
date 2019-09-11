@@ -1,7 +1,7 @@
 import { 
-  SEARCH_CITY_FAIL, 
   SEARCH_CITY_REQUEST, 
-  SEARCH_CITY_SUCCESS 
+  SEARCH_CITY_SUCCESS,
+  SEARCH_CITY_FAIL, 
 } from '../constants/constantsForCity';
 
 export const searchCityStarted = () => ({
@@ -21,6 +21,9 @@ export const searchCityFail = (error: string) => ({
 export const searchCityRequest = (titleCity) => {
   const request = {
     url: `http://localhost:3000/locations/searchByName?placeName=${titleCity}`,
+    onStart: searchCityStarted,
+    onSuccess: searchCitySuccess,
+    onFail: searchCityFail
   };
   
   return {
