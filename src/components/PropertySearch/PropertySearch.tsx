@@ -13,7 +13,7 @@ const PropertySearch = () => {
     <Fragment>
       <Header />
       <Main />
-      <RecentSearches />
+      <ListedLocation />
       <Footer />
     </Fragment>
   );

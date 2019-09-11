@@ -12,9 +12,15 @@
     border: 2px solid black;
 
     .listed-location__block2 {
-      .listed-location__block2-location {
-        .listed-location__block2-number {
+      width: 100%;
+      
+      .listed-location__list {
+        .listed-location__search {
           padding-left: 20px;
+        }
+        .listed-location__title {
+          font-weight: bold;
+          padding-left: 50px;
         }
       }
     }
