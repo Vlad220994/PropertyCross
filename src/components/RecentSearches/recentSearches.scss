@@ -12,15 +12,9 @@
     border: 2px solid black;
 
     .recent-searches__block2 {
-      width: 100%;
-      
-      .recent-searches__list {
-        .recent-searches__search {
+      .recent-searches__block2-location {
+        .recent-searches__block2-number {
           padding-left: 20px;
-        }
-        .recent-searches__title {
-          font-weight: bold;
-          padding-left: 50px;
         }
       }
     }
