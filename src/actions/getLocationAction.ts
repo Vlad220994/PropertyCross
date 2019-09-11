@@ -2,7 +2,7 @@ import {
   SEARCH_CITY_REQUEST, 
   SEARCH_CITY_SUCCESS,
   SEARCH_CITY_FAIL, 
-} from '../constants/constantsForCity';
+} from '../constants/cityConstants';
 
 export const searchCityStarted = () => ({
   type: SEARCH_CITY_REQUEST
@@ -18,7 +18,7 @@ export const searchCityFail = (error: string) => ({
   payload: error
 }); 
 
-export const searchCityRequest = (titleCity) => {
+export const searchCity = (titleCity: string) => {
   const request = {
     url: `http://localhost:3000/locations/searchByName?placeName=${titleCity}`,
     onStart: searchCityStarted,
@@ -27,7 +27,7 @@ export const searchCityRequest = (titleCity) => {
   };
   
   return {
-    type: "REQUEST",
+    request: true,
     payload: request
   }
 }

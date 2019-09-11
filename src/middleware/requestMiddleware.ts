@@ -1,13 +1,12 @@
 import store  from '../store';
 
 export const requestMiddleware = ({ dispatch, getState }) => (next) => (action) => {
-  if (action.type === 'REQUEST') { 
+  if (action.request) { 
     const myRequest = fetch(action.payload.url);
 
     next(action.payload.onStart());
 
     myRequest
-      //.then(() => action.payload.onStarted())
       .then(res => res.json())
       .then(response => next(action.payload.onSuccess(response)))
       .catch(error => next(action.payload.onFail(error)));

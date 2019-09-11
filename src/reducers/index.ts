@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 
-import { asyncSearchCityReducer } from './asyncSearchCityReducer';
+import { searchCityReducer } from './searchCityReducer';
 
-export default combineReducers({ asyncSearchCityReducer });
+export default combineReducers({ searchCityReducer });

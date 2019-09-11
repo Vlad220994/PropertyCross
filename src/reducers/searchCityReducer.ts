@@ -2,7 +2,7 @@ import {
   SEARCH_CITY_FAIL, 
   SEARCH_CITY_REQUEST, 
   SEARCH_CITY_SUCCESS 
-} from '../constants/constantsForCity';
+} from '../constants/cityConstants';
 import { searchCityInterface } from '../interfaces/searchCityInterface';
 
 interface Action {
@@ -16,7 +16,7 @@ const initialState: {cities: Array<searchCityInterface>, loading: boolean} = {
   loading: false
 };
 
-export const asyncSearchCityReducer = (state = initialState, action: Action) => {
+export const searchCityReducer = (state = initialState, action: Action) => {
   switch(action.type) {
     case SEARCH_CITY_REQUEST:
       return {

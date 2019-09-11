@@ -38,9 +38,9 @@ const RecentSearches = ({ cities, loading, error }) => {
 }
 
 const mapStateToProps = (state) => ({
-  cities: state.asyncSearchCityReducer.cities,
-  error: state.asyncSearchCityReducer.error,
-  loading: state.asyncSearchCityReducer.loading
+  cities: state.searchCityReducer.cities,
+  error: state.searchCityReducer.error,
+  loading: state.searchCityReducer.loading
 });
 
 export default connect(mapStateToProps)(RecentSearches);
