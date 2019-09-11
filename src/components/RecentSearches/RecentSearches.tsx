@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+import { Spinner } from '../Spinner/Spinner';
+import Error from '../Error/Error';
 import './recentSearches.scss';
 
-const RecentSearches = ({ cities }) => {
+const RecentSearches = ({ cities, loading, error }) => {
 
-  const city = cities.map((item, i) => {
+  const city = cities.map((item, i: number) => {
     
     const { title, id } = item;
     
@@ -19,15 +21,15 @@ const RecentSearches = ({ cities }) => {
           <span className="recent-searches__title">{title}</span>
         </td>
       </tr>
-    )}) ;
-    
+    )});
+    const result = error ? <Error /> : city;
   return(
     <section className="recent-searches">
-      <h2 className="recent-searches__heading">RecentSearches</h2>
+      <h2 className="recent-searches__heading">Recent Searches</h2>
       <div className="recent-searches__block1">
         <table className="recent-searches__block2">
           <tbody>
-            {city}
+            { loading ? <Spinner /> : result }
           </tbody>
         </table>
       </div>
@@ -36,7 +38,9 @@ const RecentSearches = ({ cities }) => {
 }
 
 const mapStateToProps = (state) => ({
-  cities: state.searchCityReducer.cities
+  cities: state.searchCityReducer.cities,
+  error: state.searchCityReducer.error,
+  loading: state.searchCityReducer.loading
 });
 
 export default connect(mapStateToProps)(RecentSearches);

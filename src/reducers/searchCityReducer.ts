@@ -1,23 +1,40 @@
-import { SEARCH_CITY } from '../constants/constantsForCity';
+import { 
+  SEARCH_CITY_FAIL, 
+  SEARCH_CITY_REQUEST, 
+  SEARCH_CITY_SUCCESS 
+} from '../constants/cityConstants';
 import { searchCityInterface } from '../interfaces/searchCityInterface';
 
 interface Action {
   type: string,
-  value: Array<searchCityInterface>
+  payload: Array<searchCityInterface>,
+  error: string
 }
 
-const initialState: {cities: Array<searchCityInterface>} = {
-  cities: []
+const initialState: {cities: Array<searchCityInterface>, loading: boolean} = {
+  cities: [],
+  loading: false
 };
 
 export const searchCityReducer = (state = initialState, action: Action) => {
-  switch (action.type) {
-    case SEARCH_CITY:
+  switch(action.type) {
+    case SEARCH_CITY_REQUEST:
       return {
         ...state,
-        cities: action.value
-      }
+        loading: true
+      };
+    case SEARCH_CITY_SUCCESS:
+      return {
+        cities: action.payload,
+        loading: false
+      };
+    case SEARCH_CITY_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
     default:
       return state;
   }
-}
+};
