@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component, useState } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { searchCity } from '../../actions/getLocationAction';
@@ -12,6 +12,9 @@ interface PropsType {
 const Main = (props: PropsType) => {
   const [value, setValue] = useState('');
 
+  const onChange = ({target}) => setValue(target.value);
+  const onClick = () => props.searchCity(value);
+
   return(
     <main className="main-block">
       <p className="main-block__block1">
@@ -19,9 +22,9 @@ const Main = (props: PropsType) => {
         postcode, or click 'My location', to search in your current location!
       </p>
       <div className="main-block__block2">
-        <input type="text" className="form-control" placeholder="Location" onChange={({target}) => setValue(target.value)} />
+        <input type="text" className="form-control" placeholder="Location" onChange={onChange} />
         <div className="main-block__block3">
-          <input type="button" value="Go" className="btn btn-primary" onClick={() => props.searchCity(value)} />
+          <input type="button" value="Go" className="btn btn-primary" onClick={onClick} />
           <input type="button" value="My location" className="btn btn-primary" />
         </div>
       </div>

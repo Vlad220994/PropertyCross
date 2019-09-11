@@ -1,4 +1,5 @@
 import { 
+  SEARCH_CITY,
   SEARCH_CITY_REQUEST, 
   SEARCH_CITY_SUCCESS,
   SEARCH_CITY_FAIL, 
@@ -6,7 +7,7 @@ import {
 
 export const searchCityStarted = () => ({
   type: SEARCH_CITY_REQUEST
-})
+});
 
 export const searchCitySuccess = (cities: string[]) => ({
   type: SEARCH_CITY_SUCCESS,
@@ -20,14 +21,14 @@ export const searchCityFail = (error: string) => ({
 
 export const searchCity = (titleCity: string) => {
   const request = {
-    url: `http://localhost:3000/locations/searchByName?placeName=${titleCity}`,
+    url: `/locations/searchByName?placeName=${titleCity}`,
     onStart: searchCityStarted,
     onSuccess: searchCitySuccess,
     onFail: searchCityFail
   };
   
   return {
-    request: true,
-    payload: request
+    type: SEARCH_CITY,
+    request
   }
 }
