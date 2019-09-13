@@ -8,7 +8,13 @@ export const requestMiddleware = ({ dispatch, getState }) => (next) => (action) 
 
     myRequest
       .then(res => res.json())
-      .then(response => next(action.request.onSuccess(response)))
+      .then(response => {
+        next(action.request.onSuccess(response));
+        const localData = JSON.parse(localStorage.getItem("localData")) || [];
+        const newData = [...localData, ...response];
+        localStorage.setItem("localData", JSON.stringify(newData));
+        next(action.request.addHistory(newData));
+      })
       .catch(error => next(action.request.onFail(error)));
 
   } else {

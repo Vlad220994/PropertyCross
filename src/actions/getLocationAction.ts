@@ -3,6 +3,7 @@ import {
   SEARCH_CITY_REQUEST, 
   SEARCH_CITY_SUCCESS,
   SEARCH_CITY_FAIL, 
+  ADD_HISTORY
 } from '../constants/cityConstants';
 
 export const searchCityStarted = () => ({
@@ -19,12 +20,18 @@ export const searchCityFail = (error: string) => ({
   payload: error
 }); 
 
+export const addHistory = (cities: string[]) => ({
+  type: ADD_HISTORY,
+  payload: cities
+});
+
 export const searchCity = (titleCity: string) => {
   const request = {
     url: `/locations/searchByName?placeName=${titleCity}`,
     onStart: searchCityStarted,
     onSuccess: searchCitySuccess,
-    onFail: searchCityFail
+    onFail: searchCityFail,
+    addHistory
   };
   
   return {

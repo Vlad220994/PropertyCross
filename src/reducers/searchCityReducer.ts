@@ -1,7 +1,8 @@
 import { 
   SEARCH_CITY_FAIL, 
   SEARCH_CITY_REQUEST, 
-  SEARCH_CITY_SUCCESS 
+  SEARCH_CITY_SUCCESS,
+  ADD_HISTORY 
 } from '../constants/cityConstants';
 import { searchCityInterface } from '../interfaces/searchCityInterface';
 
@@ -11,9 +12,10 @@ interface Action {
   error: string
 }
 
-const initialState: {cities: Array<searchCityInterface>, loading: boolean} = {
+const initialState: {cities: Array<searchCityInterface>, historyCities: Array<searchCityInterface>, loading: boolean} = {
   cities: [],
-  loading: false
+  loading: false,
+  historyCities: JSON.parse(localStorage.getItem("localData")) || []
 };
 
 export const searchCityReducer = (state = initialState, action: Action) => {
@@ -25,6 +27,7 @@ export const searchCityReducer = (state = initialState, action: Action) => {
       };
     case SEARCH_CITY_SUCCESS:
       return {
+        ...state,
         cities: action.payload,
         loading: false
       };
@@ -34,6 +37,11 @@ export const searchCityReducer = (state = initialState, action: Action) => {
         error: action.payload,
         loading: false
       };
+    case ADD_HISTORY:
+      return {
+        ...state,
+        historyCities: action.payload,
+      }
     default:
       return state;
   }

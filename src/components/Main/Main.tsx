@@ -13,7 +13,9 @@ const Main = (props: PropsType) => {
   const [value, setValue] = useState('');
 
   const onChange = ({target}) => setValue(target.value);
-  const onClick = (value: string) => () => props.searchCity(value);
+  const onClick = (value: string) => () => {
+    props.searchCity(value);
+  };
 
   return(
     <main className="main-block">

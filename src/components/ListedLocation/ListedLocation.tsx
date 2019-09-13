@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { Spinner } from '../Spinner/Spinner';
 import Error from '../Error/Error';
 import './listedLocation.scss';
-
+const arr = [];
 const ListedLocation = ({ cities, loading, error }) => {
-
-  const city = cities.map((item, i: number) => {
+  
+  const city = cities.map((item, i) => {
     
     const { title, id } = item;
-    
+
     return(
       <tr className="listed-location__list" key={id}>
         <td>
