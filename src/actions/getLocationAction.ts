@@ -1,8 +1,8 @@
 import { 
   SEARCH_CITY,
-  SEARCH_CITY_REQUEST, 
+  SEARCH_CITY_REQUEST,
   SEARCH_CITY_SUCCESS,
-  SEARCH_CITY_FAIL, 
+  SEARCH_CITY_FAIL,
   ADD_HISTORY
 } from '../constants/cityConstants';
 
@@ -10,10 +10,10 @@ export const searchCityStarted = () => ({
   type: SEARCH_CITY_REQUEST
 });
 
+const recentSearches = "recentSearches";
+
 export const searchCitySuccess = (cities: string[]) => {
   
-  const recentSearches = "recentSearches";
-
   const getData = JSON.parse(localStorage.getItem(recentSearches)) || [];
   const newData = [...getData, ...cities];
   
@@ -31,10 +31,10 @@ export const searchCityFail = (error: string) => ({
 }); 
 
 export const addHistory = (cities: string[]) => {
-  const recentSearches = JSON.parse(localStorage.getItem("localData")) || [];
+  const getData = JSON.parse(localStorage.getItem(recentSearches)) || [];
   return {
     type: ADD_HISTORY,
-    payload: recentSearches
+    payload: getData
   }
 };
 

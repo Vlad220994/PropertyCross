@@ -2,29 +2,50 @@ import * as React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 
+import {fetchStatuses, searchCityReducer} from '../../reducers/searchCityReducer';
 import RecentSearches from '../RecentSearches/RecentSearches';
 import ListedLocation from '../ListedLocation/ListedLocation';
+import Error from '../Error/Error';
 import { searchCity } from '../../actions/getLocationAction';
 import './main.scss';
+import { Spinner } from '../Spinner/Spinner';
 
 
 interface PropsType {
   searchCity: (city: string) => void;
+  fetchStatus: number
 };
 
 const Main = (props: PropsType) => {
   const [value, setValue] = useState('');
-  const [viewComponent, setViewComponent] = useState(false);
+  
+  const component = () => {
+    switch(props.fetchStatus) {
+      case fetchStatuses.REQUEST:
+        return (
+          <Spinner />
+        );
+      case fetchStatuses.SUCCESS:
+        return(
+          <ListedLocation />
+        );
+      case fetchStatuses.ERROR:
+        return (
+          <Error />
+        );
+      default:
+        return(
+          <RecentSearches />
+        );
+    }
+  };
 
   const onChange = ({target}) => setValue(target.value);
 
-  const onClick = (value: string, viewComponent: boolean) => () => {
+  const onClick = (value: string) => () => {
     props.searchCity(value);
-    setViewComponent(viewComponent = true);
   };
 
-  const setComponent = viewComponent ? <ListedLocation /> : <RecentSearches />
-  
   return(
     <main className="main-block">
       <p className="main-block__block1">
@@ -34,11 +55,11 @@ const Main = (props: PropsType) => {
       <div className="main-block__block2">
         <input type="text" className="form-control" placeholder="Location" onChange={onChange} />
         <div className="main-block__block3">
-          <input type="button" value="Go" className="btn btn-primary" onClick={onClick(value, viewComponent)} />
+          <input type="button" value="Go" className="btn btn-primary" onClick={onClick(value)} />
           <input type="button" value="My location" className="btn btn-primary" />
         </div>
       </div>
-      {setComponent}
+      {component()}
     </main>
   );
 }
@@ -47,4 +68,8 @@ const mapDispatchToProps = {
   searchCity,
 }
 
-export default connect(null, mapDispatchToProps)(Main);
+const mapStateToProps = state => ({
+  fetchStatus: state.searchCityReducer.fetchStatuses
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
