@@ -11,10 +11,13 @@ export const searchCityStarted = () => ({
 });
 
 export const searchCitySuccess = (cities: string[]) => {
-  const recentSearches = JSON.parse(localStorage.getItem("localData")) || [];
-  const newData = [...recentSearches, ...cities];
   
-  localStorage.setItem("localData", JSON.stringify(newData));
+  const recentSearches = "recentSearches";
+
+  const getData = JSON.parse(localStorage.getItem(recentSearches)) || [];
+  const newData = [...getData, ...cities];
+  
+  localStorage.setItem(recentSearches, JSON.stringify(newData));
 
   return {
     type: SEARCH_CITY_SUCCESS,
