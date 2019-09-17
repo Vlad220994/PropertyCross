@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import './recentSearches.scss';
 
 const RecentSearches = ({ historyCities }) => {
-  const locationReverse = historyCities.reverse().filter((item, i) => i < 10 );
+  const locationReverse = historyCities.reverse().filter((item, i) => i < 10);
 
   const location = locationReverse.map((item, i) => {
+
+    const { id, title } = item;
+
     return(
-      <li key={item.id + i}>
-        <span>{item.title}</span>
-        <span>{i+1}</span>
+      <li className="location-list__elem" key={id + i}>
+        <span className="location-list__elem1">{title} </span>
+        <span className="location-list__elem2">{i+1}</span>
       </li>
     );
   });
@@ -19,7 +22,7 @@ const RecentSearches = ({ historyCities }) => {
     <section className="recent-searches">
       <h2 className="recent-searches__heading">Recent Searches</h2>
       <div className="recent-searches__block1">
-        <ul className="recent-searches__block2">
+        <ul className="location-list">
           {location}
         </ul>
       </div>

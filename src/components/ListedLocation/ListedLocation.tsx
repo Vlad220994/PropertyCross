@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Spinner } from '../Spinner/Spinner';
 import Error from '../Error/Error';
 import './listedLocation.scss';
-const arr = [];
+
 const ListedLocation = ({ cities, loading, error }) => {
   
   const city = cities.map((item, i) => {
@@ -21,7 +21,8 @@ const ListedLocation = ({ cities, loading, error }) => {
           <span className="listed-location__title">{title}</span>
         </td>
       </tr>
-    )});
+    )
+  });
 
     const result = error ? <Error /> : city;
 

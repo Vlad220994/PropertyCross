@@ -2,8 +2,11 @@ import * as React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 
+import RecentSearches from '../RecentSearches/RecentSearches';
+import ListedLocation from '../ListedLocation/ListedLocation';
 import { searchCity } from '../../actions/getLocationAction';
 import './main.scss';
+
 
 interface PropsType {
   searchCity: (city: string) => void;
@@ -11,12 +14,17 @@ interface PropsType {
 
 const Main = (props: PropsType) => {
   const [value, setValue] = useState('');
+  const [viewComponent, setViewComponent] = useState(false);
 
   const onChange = ({target}) => setValue(target.value);
-  const onClick = (value: string) => () => {
+
+  const onClick = (value: string, viewComponent: boolean) => () => {
     props.searchCity(value);
+    setViewComponent(viewComponent = true);
   };
 
+  const setComponent = viewComponent ? <ListedLocation /> : <RecentSearches />
+  
   return(
     <main className="main-block">
       <p className="main-block__block1">
@@ -26,10 +34,11 @@ const Main = (props: PropsType) => {
       <div className="main-block__block2">
         <input type="text" className="form-control" placeholder="Location" onChange={onChange} />
         <div className="main-block__block3">
-          <input type="button" value="Go" className="btn btn-primary" onClick={onClick(value)} />
+          <input type="button" value="Go" className="btn btn-primary" onClick={onClick(value, viewComponent)} />
           <input type="button" value="My location" className="btn btn-primary" />
         </div>
       </div>
+      {setComponent}
     </main>
   );
 }
