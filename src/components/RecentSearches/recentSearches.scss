@@ -10,12 +10,12 @@
 
   .recent-searches__block1 {
     border: 2px solid black;
-
-    .recent-searches__block2 {
-      .recent-searches__block2-location {
-        .recent-searches__block2-number {
-          padding-left: 20px;
-        }
+      
+    .location-list {
+      font-weight: bold;
+      
+      .location-list__elem {
+        padding-left: 30px;
       }
     }
   }

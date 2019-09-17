@@ -2,18 +2,49 @@ import * as React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 
+import { FETCH_STATUSES } from '../../constants/fetchStatuses';
 import { searchCity } from '../../actions/getLocationAction';
+import RecentSearches from '../RecentSearches/RecentSearches';
+import ListedLocation from '../ListedLocation/ListedLocation';
+import Error from '../Error/Error';
+import { Spinner } from '../Spinner/Spinner';
 import './main.scss';
 
 interface PropsType {
   searchCity: (city: string) => void;
+  fetchStatus: number,
+  cities: string[]
 };
 
 const Main = (props: PropsType) => {
   const [value, setValue] = useState('');
+  
+  const component = () => {
+    switch(props.fetchStatus) {
+      case FETCH_STATUSES.REQUEST:
+        return (
+          <Spinner />
+        );
+      case FETCH_STATUSES.SUCCESS:
+        return(
+          <ListedLocation cities={props.cities} />
+        );
+      case FETCH_STATUSES.ERROR:
+        return (
+          <Error />
+        );
+      default:
+        return(
+          <RecentSearches />
+        );
+    }
+  };
 
   const onChange = ({target}) => setValue(target.value);
-  const onClick = (value: string) => () => props.searchCity(value);
+
+  const onClick = (value: string) => () => {
+    props.searchCity(value);
+  };
 
   return(
     <main className="main-block">
@@ -28,6 +59,7 @@ const Main = (props: PropsType) => {
           <input type="button" value="My location" className="btn btn-primary" />
         </div>
       </div>
+      {component()}
     </main>
   );
 }
@@ -36,4 +68,9 @@ const mapDispatchToProps = {
   searchCity,
 }
 
-export default connect(null, mapDispatchToProps)(Main);
+const mapStateToProps = state => ({
+  fetchStatus: state.searchCityReducer.fetchStatus,
+  cities: state.searchCityReducer.cities,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

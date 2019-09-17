@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { Spinner } from '../Spinner/Spinner';
-import Error from '../Error/Error';
 import './listedLocation.scss';
 
-const ListedLocation = ({ cities, loading, error }) => {
-
-  const city = cities.map((item, i: number) => {
+const ListedLocation = ({ cities }) => {
+  
+  const city = cities.map((item, i) => {
     
     const { title, id } = item;
-    
+
     return(
       <tr className="listed-location__list" key={id}>
         <td>
@@ -21,9 +19,8 @@ const ListedLocation = ({ cities, loading, error }) => {
           <span className="listed-location__title">{title}</span>
         </td>
       </tr>
-    )});
-
-    const result = error ? <Error /> : city;
+    )
+  });
 
   return(
     <section className="listed-location">
@@ -31,7 +28,7 @@ const ListedLocation = ({ cities, loading, error }) => {
       <div className="listed-location__block1">
         <table className="listed-location__block2">
           <tbody>
-            { loading ? <Spinner /> : result }
+            { city }
           </tbody>
         </table>
       </div>
@@ -39,10 +36,4 @@ const ListedLocation = ({ cities, loading, error }) => {
   );
 }
 
-const mapStateToProps = (state) => ({
-  cities: state.searchCityReducer.cities,
-  error: state.searchCityReducer.error,
-  loading: state.searchCityReducer.loading
-});
-
-export default connect(mapStateToProps)(ListedLocation);
+export default ListedLocation;
