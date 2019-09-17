@@ -5,19 +5,18 @@ import {
   SEARCH_CITY_FAIL,
   ADD_HISTORY
 } from '../constants/cityConstants';
+import { RECENT_SEARCHES } from '../constants/recentSearches';
 
 export const searchCityStarted = () => ({
   type: SEARCH_CITY_REQUEST
 });
 
-const recentSearches = "recentSearches";
-
 export const searchCitySuccess = (cities: string[]) => {
   
-  const getData = JSON.parse(localStorage.getItem(recentSearches)) || [];
+  const getData = JSON.parse(localStorage.getItem(RECENT_SEARCHES)) || [];
   const newData = [...getData, ...cities];
   
-  localStorage.setItem(recentSearches, JSON.stringify(newData));
+  localStorage.setItem(RECENT_SEARCHES, JSON.stringify(newData));
 
   return {
     type: SEARCH_CITY_SUCCESS,
@@ -31,7 +30,7 @@ export const searchCityFail = (error: string) => ({
 }); 
 
 export const addHistory = (cities: string[]) => {
-  const getData = JSON.parse(localStorage.getItem(recentSearches)) || [];
+  const getData = JSON.parse(localStorage.getItem(RECENT_SEARCHES)) || [];
   return {
     type: ADD_HISTORY,
     payload: getData

@@ -2,18 +2,18 @@ import * as React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 
-import {fetchStatuses, searchCityReducer} from '../../reducers/searchCityReducer';
+import { FETCH_STATUSES } from '../../constants/fetchStatuses';
+import { searchCity } from '../../actions/getLocationAction';
 import RecentSearches from '../RecentSearches/RecentSearches';
 import ListedLocation from '../ListedLocation/ListedLocation';
 import Error from '../Error/Error';
-import { searchCity } from '../../actions/getLocationAction';
-import './main.scss';
 import { Spinner } from '../Spinner/Spinner';
-
+import './main.scss';
 
 interface PropsType {
   searchCity: (city: string) => void;
-  fetchStatus: number
+  fetchStatus: number,
+  cities: string[]
 };
 
 const Main = (props: PropsType) => {
@@ -21,15 +21,15 @@ const Main = (props: PropsType) => {
   
   const component = () => {
     switch(props.fetchStatus) {
-      case fetchStatuses.REQUEST:
+      case FETCH_STATUSES.REQUEST:
         return (
           <Spinner />
         );
-      case fetchStatuses.SUCCESS:
+      case FETCH_STATUSES.SUCCESS:
         return(
-          <ListedLocation />
+          <ListedLocation cities={props.cities} />
         );
-      case fetchStatuses.ERROR:
+      case FETCH_STATUSES.ERROR:
         return (
           <Error />
         );
@@ -69,7 +69,8 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = state => ({
-  fetchStatus: state.searchCityReducer.fetchStatuses
+  fetchStatus: state.searchCityReducer.fetchStatus,
+  cities: state.searchCityReducer.cities,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

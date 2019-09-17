@@ -4,9 +4,9 @@ import './error.scss';
 
 const Error = () => {
   return(
-    <tr className="block-error">
-      <td className="block-error__heading">There was a problem with your search</td>
-    </tr>
+    <div className="block-error">
+      <h2 className="block-error__heading">There was a problem with your search</h2>
+    </div>
   );
 }
 

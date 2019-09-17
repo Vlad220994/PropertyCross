@@ -5,6 +5,8 @@ import {
   ADD_HISTORY 
 } from '../constants/cityConstants';
 import { searchCityInterface } from '../interfaces/searchCityInterface';
+import { RECENT_SEARCHES } from '../constants/recentSearches';
+import { FETCH_STATUSES } from '../constants/fetchStatuses';
 
 interface Action {
   type: string,
@@ -12,18 +14,16 @@ interface Action {
   error: string
 }
 
-export const fetchStatuses = {
-  IDLE: 0,
-  REQUEST: 1,
-  SUCCESS: 2,
-  ERROR: -1
-};
-
-const initialState: {cities: Array<searchCityInterface>, historyCities: Array<searchCityInterface>, fetchStatuses: number, loading: boolean} = {
+const initialState: {
+  cities: Array<searchCityInterface>, 
+  historyCities: Array<searchCityInterface>, 
+  fetchStatus: number, 
+  loading: boolean
+} = {
   cities: [],
   loading: false,
-  fetchStatuses: fetchStatuses.IDLE,
-  historyCities: JSON.parse(localStorage.getItem("recentSearches")) || []
+  fetchStatus: FETCH_STATUSES.IDLE,
+  historyCities: JSON.parse(localStorage.getItem(RECENT_SEARCHES)) || []
 };
 
 export const searchCityReducer = (state = initialState, action: Action) => {
@@ -32,21 +32,21 @@ export const searchCityReducer = (state = initialState, action: Action) => {
       return {
         ...state,
         loading: true,
-        fetchStatuses: fetchStatuses.REQUEST
+        fetchStatus: FETCH_STATUSES.REQUEST
       };
     case SEARCH_CITY_SUCCESS:
       return {
         ...state,
         cities: action.payload,
         loading: false,
-        fetchStatuses: fetchStatuses.SUCCESS
+        fetchStatus: FETCH_STATUSES.SUCCESS
       };
     case SEARCH_CITY_FAIL:
       return {
         ...state,
         error: action.payload,
         loading: false,
-        fetchStatuses: fetchStatuses.ERROR
+        fetchStatus: FETCH_STATUSES.ERROR
       };
     case ADD_HISTORY:
       return {
