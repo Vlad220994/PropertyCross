@@ -17,11 +17,9 @@ interface Action {
 const initialState: {
   cities: Array<searchCityInterface>, 
   historyCities: Array<searchCityInterface>, 
-  fetchStatus: number, 
-  loading: boolean
+  fetchStatus: number
 } = {
   cities: [],
-  loading: false,
   fetchStatus: FETCH_STATUSES.IDLE,
   historyCities: JSON.parse(localStorage.getItem(RECENT_SEARCHES)) || []
 };
@@ -31,21 +29,18 @@ export const searchCityReducer = (state = initialState, action: Action) => {
     case SEARCH_CITY_REQUEST:
       return {
         ...state,
-        loading: true,
         fetchStatus: FETCH_STATUSES.REQUEST
       };
     case SEARCH_CITY_SUCCESS:
       return {
         ...state,
         cities: action.payload,
-        loading: false,
         fetchStatus: FETCH_STATUSES.SUCCESS
       };
     case SEARCH_CITY_FAIL:
       return {
         ...state,
         error: action.payload,
-        loading: false,
         fetchStatus: FETCH_STATUSES.ERROR
       };
     case ADD_HISTORY:
