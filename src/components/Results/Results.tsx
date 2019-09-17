@@ -1,10 +1,10 @@
-import * as React from 'react';
+import * as React from "react";
 
-import Element from '../Element/Element';
-import './results.scss';
+import Element from "../Element/Element";
+import "./results.scss";
 
 const Results = () => {
-  return(
+  return (
     <ul className="results">
       <li className="results__element">
         <Element />
@@ -14,6 +14,6 @@ const Results = () => {
       </li>
     </ul>
   );
-}
+};
 
 export default Results;

@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { Fragment } from 'react';
+import * as React from "react";
+import { Fragment } from "react";
 
-import Header from '../Header/Header';
-import Main from '../Main/Main';
-import Footer from '../Footer/Footer';
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
 
 const PropertySearch = () => {
-  return(
+  return (
     <Fragment>
       <Header />
       <Main />
       <Footer />
     </Fragment>
   );
-}
+};
 
 export default PropertySearch;

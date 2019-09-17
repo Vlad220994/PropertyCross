@@ -1,9 +1,9 @@
-import store  from '../store';
+import store from "../store";
 
-export const requestMiddleware = ({ dispatch, getState }) => (next) => (action) => {
-  if (action.request) { 
+export const requestMiddleware = ({ dispatch, getState }) => next => action => {
+  if (action.request) {
     const myRequest = fetch(`http://localhost:3000${action.request.url}`);
-    
+
     next(action.request.onStart());
 
     myRequest
@@ -13,10 +13,9 @@ export const requestMiddleware = ({ dispatch, getState }) => (next) => (action) 
         next(action.request.addHistory());
       })
       .catch(error => next(action.request.onFail(error)));
-
   } else {
-      typeof action === 'function' ?
-      action(store.dispatch, store.getState) :
-      next(action);
+    typeof action === "function"
+      ? action(store.dispatch, store.getState)
+      : next(action);
   }
-}
+};
