@@ -1,40 +1,47 @@
-import { 
+import {
   SEARCH_CITY,
   SEARCH_CITY_REQUEST,
   SEARCH_CITY_SUCCESS,
   SEARCH_CITY_FAIL,
   ADD_HISTORY
-} from '../constants/cityConstants';
-import { RECENT_SEARCHES } from '../constants/recentSearches';
+} from "../constants/cityConstants";
+import { RESULT_OF_SEARCH } from "../constants/resultOfSearch";
 
 export const searchCityStarted = () => ({
   type: SEARCH_CITY_REQUEST
 });
 
 export const searchCitySuccess = (cities: string[]) => {
-  
-  const getData = JSON.parse(localStorage.getItem(RECENT_SEARCHES)) || [];
-  const newData = [...getData, ...cities];
-  
-  localStorage.setItem(RECENT_SEARCHES, JSON.stringify(newData));
+  const getData = JSON.parse(localStorage.getItem(RESULT_OF_SEARCH)) || [];
+  const obj2 = [
+    {
+      value: "Search #" + (getData.length + 1),
+      count: cities.length,
+      city: cities[0]["title"]
+    }
+  ];
+
+  const getResults = [...obj2, ...getData];
+
+  localStorage.setItem(RESULT_OF_SEARCH, JSON.stringify(getResults));
 
   return {
     type: SEARCH_CITY_SUCCESS,
     payload: cities
-  }
-}; 
+  };
+};
 
 export const searchCityFail = (error: string) => ({
   type: SEARCH_CITY_FAIL,
   payload: error
-}); 
+});
 
 export const addHistory = (cities: string[]) => {
-  const getData = JSON.parse(localStorage.getItem(RECENT_SEARCHES)) || [];
+  const getData = JSON.parse(localStorage.getItem(RESULT_OF_SEARCH)) || [];
   return {
     type: ADD_HISTORY,
     payload: getData
-  }
+  };
 };
 
 export const searchCity = (titleCity: string) => {
@@ -45,9 +52,9 @@ export const searchCity = (titleCity: string) => {
     onFail: searchCityFail,
     addHistory
   };
-  
+
   return {
     type: SEARCH_CITY,
     request
-  }
-}
+  };
+};

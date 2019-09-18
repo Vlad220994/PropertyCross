@@ -5,7 +5,7 @@ import {
   ADD_HISTORY
 } from "../constants/cityConstants";
 import { searchCityInterface } from "../interfaces/searchCityInterface";
-import { RECENT_SEARCHES } from "../constants/recentSearches";
+import { RESULT_OF_SEARCH } from "../constants/resultOfSearch";
 import { FETCH_STATUSES } from "../constants/fetchStatuses";
 
 interface Action {
@@ -21,7 +21,7 @@ const initialState: {
 } = {
   cities: [],
   fetchStatus: FETCH_STATUSES.IDLE,
-  historyCities: JSON.parse(localStorage.getItem(RECENT_SEARCHES)) || []
+  historyCities: JSON.parse(localStorage.getItem(RESULT_OF_SEARCH)) || []
 };
 
 export const searchCityReducer = (state = initialState, action: Action) => {

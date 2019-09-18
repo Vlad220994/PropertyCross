@@ -1,5 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import "./recentSearches.scss";
 
@@ -7,13 +8,15 @@ const RecentSearches = ({ historyCities }) => {
   const locationReverse = historyCities.reverse().filter((item, i) => i < 10);
 
   const location = locationReverse.map((item, i) => {
-    const { id, title } = item;
+    const { value, count } = item;
 
     return (
-      <li className="location-list__elem" key={id + i}>
-        <span className="location-list__elem1">{title} </span>
-        <span className="location-list__elem2">{i + 1}</span>
-      </li>
+      <Link to="/search-results-page">
+        <li className="location-list__elem" key={value + i}>
+          <span className="location-list__elem1">{value} </span>
+          <span className="location-list__elem2">({count})</span>
+        </li>
+      </Link>
     );
   });
 
