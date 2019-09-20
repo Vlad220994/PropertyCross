@@ -8,7 +8,7 @@ const Routes = ({ history }) => {
   return (
     <Router history={history}>
       <Route exact path="/" component={PropertySearch} />
-      <Route exact path="/search-results-page" component={SearchResultsPage} />
+      <Route path="/:city" component={SearchResultsPage} />
     </Router>
   );
 };

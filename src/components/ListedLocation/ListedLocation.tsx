@@ -4,7 +4,7 @@ import "./listedLocation.scss";
 
 const ListedLocation = ({ cities }) => {
   const city = cities.map((item, i) => {
-    const { title, id } = item;
+    const { longTitle, id } = item;
 
     return (
       <tr className="listed-location__list" key={id}>
@@ -13,7 +13,7 @@ const ListedLocation = ({ cities }) => {
           <span className="listed-location__number">#{i + 1} </span>
         </td>
         <td>
-          <span className="listed-location__title">{title}</span>
+          <span className="listed-location__title">{longTitle}</span>
         </td>
       </tr>
     );

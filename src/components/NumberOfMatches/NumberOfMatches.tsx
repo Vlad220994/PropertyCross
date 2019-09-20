@@ -2,10 +2,10 @@ import * as React from "react";
 
 import "./numberOfMatches.scss";
 
-const NumberOfMatches = () => {
+const NumberOfMatches = ({ results }) => {
   return (
     <section className="numberOfMatches">
-      <h2 className="numberOfMatches__heading">x of y matches</h2>
+      <h2 className="numberOfMatches__heading">{results} results</h2>
     </section>
   );
 };

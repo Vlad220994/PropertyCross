@@ -2,19 +2,27 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { searchProperty } from "../../actions/getPropertyAction";
 import "./recentSearches.scss";
 
-const RecentSearches = ({ historyCities }) => {
+const RecentSearches = ({ historyCities, searchProperty }) => {
   const locationReverse = historyCities.reverse().filter((item, i) => i < 10);
 
   const location = locationReverse.map((item, i) => {
-    const { value, count } = item;
+    const { value, count, city } = item;
+    const onClick = () => () => {
+      searchProperty(city);
+    };
 
     return (
-      <Link to="/search-results-page">
-        <li className="location-list__elem" key={value + i}>
-          <span className="location-list__elem1">{value} </span>
-          <span className="location-list__elem2">({count})</span>
+      <Link to={`/${city}`} onClick={onClick()}>
+        <li className="location-list__elem" key={value}>
+          <span className="location-list__elem1" key={value + count}>
+            {value}{" "}
+          </span>
+          <span className="location-list__elem2" key={value + i}>
+            ({count})
+          </span>
         </li>
       </Link>
     );
@@ -30,8 +38,15 @@ const RecentSearches = ({ historyCities }) => {
   );
 };
 
+const mapDispatchToProps = {
+  searchProperty
+};
+
 const mapStateToProps = state => ({
   historyCities: state.searchCityReducer.historyCities
 });
 
-export default connect(mapStateToProps)(RecentSearches);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RecentSearches);

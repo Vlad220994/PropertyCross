@@ -10,7 +10,9 @@ export const requestMiddleware = ({ dispatch, getState }) => next => action => {
       .then(res => res.json())
       .then(response => {
         next(action.request.onSuccess(response));
-        next(action.request.addHistory());
+        if (action.type === "SEARCH_CITY") {
+          next(action.request.addHistory());
+        }
       })
       .catch(error => next(action.request.onFail(error)));
   } else {

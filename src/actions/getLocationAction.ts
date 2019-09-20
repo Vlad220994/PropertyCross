@@ -13,15 +13,16 @@ export const searchCityStarted = () => ({
 
 export const searchCitySuccess = (cities: string[]) => {
   const getData = JSON.parse(localStorage.getItem(RESULT_OF_SEARCH)) || [];
-  const obj2 = [
+  const obj = [
     {
       value: "Search #" + (getData.length + 1),
       count: cities.length,
-      city: cities[0]["title"]
+      city: cities[0]["placeName"],
+      fullName: cities[0]["longTitle"]
     }
   ];
 
-  const getResults = [...obj2, ...getData];
+  const getResults = [...obj, ...getData];
 
   localStorage.setItem(RESULT_OF_SEARCH, JSON.stringify(getResults));
 
