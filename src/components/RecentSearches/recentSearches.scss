@@ -1,6 +1,6 @@
 .recent-searches {
   margin: 20px auto;
-  width: 80%;
+  width: 90%;
 
   .recent-searches__heading {
     font-size: 20px;
@@ -13,13 +13,32 @@
 
     .location-list {
       font-weight: bold;
+      padding: 0 5px;
 
-      a {
-        text-decoration: none;
-
-        .location-list__elem {
-          padding-left: 30px;
+      .location-list__elem {
+        .location-list__elem2 {
+          padding-left: 10px;
         }
+      }
+      .location-list__elem:hover {
+        color: rgb(30, 108, 210);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .location-list {
+    padding: 0;
+    .location-list__elem {
+      font-size: 12px;
+      .location-list__elem1 {
+        padding-left: 0px;
+      }
+      .location-list__elem2,
+      .location-list__elem3 {
+        padding-left: 3px;
       }
     }
   }

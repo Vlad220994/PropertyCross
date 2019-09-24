@@ -19,6 +19,11 @@ interface PropsType {
 const Main = (props: PropsType) => {
   const [value, setValue] = useState("");
 
+  const onClickHistory = (values = "") => {
+    setValue(values);
+    props.searchCity(values);
+  };
+
   const component = () => {
     switch (props.fetchStatus) {
       case FETCH_STATUSES.REQUEST:
@@ -28,7 +33,7 @@ const Main = (props: PropsType) => {
       case FETCH_STATUSES.ERROR:
         return <Error />;
       default:
-        return <RecentSearches />;
+        return <RecentSearches onClickHistory={onClickHistory} />;
     }
   };
 
@@ -51,6 +56,7 @@ const Main = (props: PropsType) => {
           className="form-control"
           placeholder="Location"
           onChange={onChange}
+          value={value}
         />
         <div className="main-block__block3">
           <input

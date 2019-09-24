@@ -5,7 +5,7 @@
   .listed-location__heading {
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
 
   .listed-location__block1 {
@@ -13,7 +13,7 @@
 
     .listed-location__block2 {
       width: 100%;
-      
+
       .listed-location__list {
         .listed-location__search {
           padding-left: 20px;
@@ -21,6 +21,44 @@
         .listed-location__title {
           font-weight: bold;
           padding-left: 50px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) {
+  .listed-location {
+    width: 80%;
+
+    .listed-location__heading {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .listed-location__block1 {
+      border: 2px solid black;
+
+      .listed-location__block2 {
+        width: 100%;
+
+        .listed-location__list {
+          a {
+            text-decoration: none;
+            .listed-location__search {
+              padding-left: 5px;
+              font-size: 16px;
+            }
+            .listed-location__number {
+              font-size: 16px;
+            }
+            .listed-location__title {
+              font-size: 16px;
+              font-weight: bold;
+              padding-left: 5px;
+            }
+          }
         }
       }
     }

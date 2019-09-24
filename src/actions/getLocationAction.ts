@@ -11,14 +11,14 @@ export const searchCityStarted = () => ({
   type: SEARCH_CITY_REQUEST
 });
 
-export const searchCitySuccess = (cities: string[]) => {
+export const searchCitySuccess = (cities: string[], titleCity) => {
   const getData = JSON.parse(localStorage.getItem(RESULT_OF_SEARCH)) || [];
+
   const obj = [
     {
       value: "Search #" + (getData.length + 1),
-      count: cities.length,
-      city: cities[0]["placeName"],
-      fullName: cities[0]["longTitle"]
+      titleCity,
+      count: cities.length
     }
   ];
 
@@ -51,6 +51,7 @@ export const searchCity = (titleCity: string) => {
     onStart: searchCityStarted,
     onSuccess: searchCitySuccess,
     onFail: searchCityFail,
+    title: titleCity,
     addHistory
   };
 
