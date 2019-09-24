@@ -1,8 +1,7 @@
 import {
   SEARCH_CITY_FAIL,
   SEARCH_CITY_REQUEST,
-  SEARCH_CITY_SUCCESS,
-  ADD_HISTORY
+  SEARCH_CITY_SUCCESS
 } from "../constants/cityConstants";
 import { searchCityInterface } from "../interfaces/searchCityInterface";
 import { RESULT_OF_SEARCH } from "../constants/resultOfSearch";
@@ -42,11 +41,6 @@ export const searchCityReducer = (state = initialState, action: Action) => {
         ...state,
         error: action.payload,
         fetchStatus: FETCH_STATUSES.ERROR
-      };
-    case ADD_HISTORY:
-      return {
-        ...state,
-        historyCities: action.payload
       };
     default:
       return state;

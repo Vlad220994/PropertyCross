@@ -13,15 +13,15 @@ const RecentSearches = ({ historyCities, onClickHistory }) => {
       <li
         className="location-list__elem"
         key={value}
-        onClick={() => onClickHistory(titleCity)}
+        onClick={() => onClickHistory(titleCity.title)}
       >
-        <span className="location-list__elem1" key={value + titleCity}>
+        <span className="location-list__elem1">
           {value}{" "}
         </span>
-        <span className="location-list__elem2" key={value + i}>
-          Request: "{titleCity}"
+        <span className="location-list__elem2">
+          Request: "{titleCity.title}"
         </span>
-        <span className="location-list__elem3" key={value + i + titleCity}>
+        <span className="location-list__elem3">
           ({count})
         </span>
       </li>

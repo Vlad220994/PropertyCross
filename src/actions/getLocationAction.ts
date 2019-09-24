@@ -2,8 +2,7 @@ import {
   SEARCH_CITY,
   SEARCH_CITY_REQUEST,
   SEARCH_CITY_SUCCESS,
-  SEARCH_CITY_FAIL,
-  ADD_HISTORY
+  SEARCH_CITY_FAIL
 } from "../constants/cityConstants";
 import { RESULT_OF_SEARCH } from "../constants/resultOfSearch";
 
@@ -37,22 +36,15 @@ export const searchCityFail = (error: string) => ({
   payload: error
 });
 
-export const addHistory = (cities: string[]) => {
-  const getData = JSON.parse(localStorage.getItem(RESULT_OF_SEARCH)) || [];
-  return {
-    type: ADD_HISTORY,
-    payload: getData
-  };
-};
-
 export const searchCity = (titleCity: string) => {
   const request = {
     url: `/locations/searchByName?placeName=${titleCity}`,
     onStart: searchCityStarted,
     onSuccess: searchCitySuccess,
     onFail: searchCityFail,
-    title: titleCity,
-    addHistory
+    params: {
+      title: titleCity,
+    }
   };
 
   return {

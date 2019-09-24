@@ -42,10 +42,11 @@
 
       .listed-location__block2 {
         width: 100%;
-
-        .listed-location__list {
-          a {
+        
+        a {
+          .listed-location__list {
             text-decoration: none;
+            
             .listed-location__search {
               padding-left: 5px;
               font-size: 16px;
