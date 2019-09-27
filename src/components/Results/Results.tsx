@@ -1,15 +1,20 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { useEffect } from "react";
 
+import { searchProperty } from "../../actions/getPropertyAction";
 import "./results.scss";
 
-const Results = ({ property }) => {
-  const { properties, location="" } = property;
+const ResultsComponent = ({ property, searchProperty, match }) => {
+  const { properties = [], location="" } = property;
 
-  let propers;
+  useEffect(() => {
+    searchProperty(match.params.city);
+    console.log(match.params.city);
+  }, []);
 
-  if (Array.isArray(properties)) {
-    propers = properties.map((item, i) => {
+  const buildings = properties.map((item, i) => {
       const { id, imgUrl, priceFormatted, summary, title } = item;
       return (
         <li className="results__element" key={id+i}>
@@ -29,10 +34,13 @@ const Results = ({ property }) => {
           </div>
         </li>
       );
-    });
-  }
+  });
 
-  return <ul className="results">{propers}</ul>;
+  return <ul className="results">{buildings}</ul>;
 };
 
-export default Results;
+const mapDispatchToProps = {
+    searchProperty
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(ResultsComponent));

@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 import NumberOfMatches from "../NumberOfMatches/NumberOfMatches";
 import Results from "../Results/Results";
+import { searchProperty } from "../../actions/getPropertyAction";
 import "./searchResultsPage.scss";
 
-const SearchResultsPage = ({ property }) => {
+const SearchResultsPage = ({ property, searchProperty }) => {
   return (
     <main className="main">
       <div className="container">
@@ -18,7 +19,7 @@ const SearchResultsPage = ({ property }) => {
         <h2 className="container__heading">{property.location.longTitle}</h2>
         <NumberOfMatches results={property.properties.length} />
       </div>
-      <Results property={property} />
+      <Results property={property} searchProperty={searchProperty} />
     </main>
   );
 };
@@ -27,4 +28,8 @@ const mapStateToProps = state => ({
   property: state.getPropertyReducer.properties
 });
 
-export default connect(mapStateToProps)(SearchResultsPage);
+const mapDispatchToProps = () => ({
+  searchProperty
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsPage);

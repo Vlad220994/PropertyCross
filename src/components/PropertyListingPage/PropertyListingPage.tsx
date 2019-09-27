@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-import {connect} from 'react-redux';
+import { useEffect } from "react";
+import { connect } from 'react-redux';
 
+import { searchProperty } from "../../actions/getPropertyAction";
 import './propertyListingPage.scss';
 
 const PropertyListingPage = (props) => {
-  const { match, property } = props;
+  const { match, property, searchProperty } = props;
   
-  const currentProperty = property.properties.filter((item) => {
-    return item.id === match.params.id;
-  });
+  useEffect(() => {
+    searchProperty(match.params.city, match.params.id);
+  }, []);
 
   const { 
     imgUrl, 
@@ -20,7 +22,7 @@ const PropertyListingPage = (props) => {
     carSpaces, 
     propertyType, 
     listerName 
-  } = currentProperty[0];
+  } = property;
   
   return(
     <div className="property-listing-page">
@@ -48,7 +50,11 @@ const PropertyListingPage = (props) => {
 };
 
 const mapStateToProps = state => ({
-  property: state.getPropertyReducer.properties
+  property: state.getPropertyReducer.building
 });
 
-export default connect(mapStateToProps)(PropertyListingPage);
+const mapDispatchToProps = {
+  searchProperty
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PropertyListingPage);

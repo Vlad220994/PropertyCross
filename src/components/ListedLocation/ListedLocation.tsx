@@ -1,17 +1,15 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
-import { searchProperty } from "../../actions/getPropertyAction";
 import "./listedLocation.scss";
 
-const ListedLocation = ({ cities, searchProperty }) => {
+const ListedLocation = ({ cities }) => {
 
   const city = cities.map((item, i) => {
-    const { longTitle, id, placeName } = item;
+    const { longTitle, placeName } = item;
 
     return (
-      <Link to={`/${placeName}`} onClick={() => searchProperty(placeName)} key={id+i}>
+      <Link to={`/${placeName}`} key={longTitle + i}>
         <li className="listed-location__list">
           <span className="listed-location__search">Search </span>
           <span className="listed-location__number">#{i + 1} </span>
@@ -35,11 +33,4 @@ const ListedLocation = ({ cities, searchProperty }) => {
   );
 };
 
-const mapDispatchToProps = {
-  searchProperty
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(ListedLocation);
+export default ListedLocation
