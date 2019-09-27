@@ -3,14 +3,14 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 
-import { searchProperty } from "../../actions/getPropertyAction";
+import { searchProperties } from "../../actions/getPropertyAction";
 import "./results.scss";
 
-const ResultsComponent = ({ property, searchProperty, match }) => {
+const ResultsComponent = ({ property, searchProperties, match }) => {
   const { properties = [], location="" } = property;
 
   useEffect(() => {
-    searchProperty(match.params.city);
+    searchProperties(match.params.city);
   }, []);
 
   const buildings = properties.map((item, i) => {
@@ -39,7 +39,7 @@ const ResultsComponent = ({ property, searchProperty, match }) => {
 };
 
 const mapDispatchToProps = {
-    searchProperty
+    searchProperties
 };
 
 export default withRouter(connect(null, mapDispatchToProps)(ResultsComponent));

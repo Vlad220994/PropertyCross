@@ -25,7 +25,7 @@ export const getPropertyError = error => ({
   payload: error
 });
 
-export const searchProperty = (title) => {
+export const searchProperties = (title) => {
   const request = {
     url: `/locations/${title}/properties`,
     onStart: getPropertyRequest,
@@ -39,7 +39,7 @@ export const searchProperty = (title) => {
   };
 };
 
-export const searchBuilding = (title, id) => {
+export const searchProperty = (title, id) => {
   const request = {
     url: `/locations/${title}/properties/${id}`,
     onStart: getPropertyRequest,
