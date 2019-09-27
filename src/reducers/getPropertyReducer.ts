@@ -7,17 +7,17 @@ import {
 import { FETCH_STATUSES } from "../constants/fetchStatuses";
 
 const initialState: {
-  properties;
+  getProperties;
   fetchStatus: number;
-  building;
+  getBuilding;
 } = {
-  properties: {
+  getProperties: {
     properties: [],
     location: {
       longTitle: ""
     }
   },
-  building: {},
+  getBuilding: {},
   fetchStatus: FETCH_STATUSES.IDLE
 };
 
@@ -31,13 +31,13 @@ export const getPropertyReducer = (state = initialState, action) => {
     case GET_PROPERTY_SUCCESS:
       return {
         ...state,
-        properties: action.payload,
+        getProperties: action.payload,
         fetchStatus: FETCH_STATUSES.SUCCESS
       };
     case GET_BUILDING_SUCCESS:
       return {
         ...state,
-        building: action.payload,
+        getBuilding: action.payload,
         fetchStatus: FETCH_STATUSES.SUCCESS
       };
     case GET_PROPERTY_ERROR:

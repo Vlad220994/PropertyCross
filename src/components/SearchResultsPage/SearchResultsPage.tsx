@@ -25,7 +25,7 @@ const SearchResultsPage = ({ property, searchProperty }) => {
 };
 
 const mapStateToProps = state => ({
-  property: state.getPropertyReducer.properties
+  property: state.getPropertyReducer.getProperties
 });
 
 const mapDispatchToProps = () => ({

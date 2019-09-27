@@ -25,11 +25,25 @@ export const getPropertyError = error => ({
   payload: error
 });
 
-export const searchProperty = (title, id) => {
+export const searchProperty = (title) => {
   const request = {
-    url: id ? `/locations/${title}/properties/${id}` : `/locations/${title}/properties`,
+    url: `/locations/${title}/properties`,
     onStart: getPropertyRequest,
-    onSuccess: id ? getBuildingSuccess : getPropertySuccess,
+    onSuccess: getPropertySuccess,
+    onError: getPropertyError
+  };
+
+  return {
+    type: REQUEST_PROPERTY,
+    request
+  };
+};
+
+export const searchBuilding = (title, id) => {
+  const request = {
+    url: `/locations/${title}/properties/${id}`,
+    onStart: getPropertyRequest,
+    onSuccess: getBuildingSuccess,
     onError: getPropertyError
   };
 

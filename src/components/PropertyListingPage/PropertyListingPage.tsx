@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { connect } from 'react-redux';
 
-import { searchProperty } from "../../actions/getPropertyAction";
+import { searchBuilding } from "../../actions/getPropertyAction";
 import './propertyListingPage.scss';
 
 const PropertyListingPage = (props) => {
-  const { match, property, searchProperty } = props;
+  const { match, property, searchBuilding } = props;
   
   useEffect(() => {
-    searchProperty(match.params.city, match.params.id);
+    searchBuilding(match.params.city, match.params.id);
   }, []);
 
   const { 
@@ -50,11 +50,11 @@ const PropertyListingPage = (props) => {
 };
 
 const mapStateToProps = state => ({
-  property: state.getPropertyReducer.building
+  property: state.getPropertyReducer.getBuilding
 });
 
 const mapDispatchToProps = {
-  searchProperty
+  searchBuilding
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PropertyListingPage);

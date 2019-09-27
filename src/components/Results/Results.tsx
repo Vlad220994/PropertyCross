@@ -11,7 +11,6 @@ const ResultsComponent = ({ property, searchProperty, match }) => {
 
   useEffect(() => {
     searchProperty(match.params.city);
-    console.log(match.params.city);
   }, []);
 
   const buildings = properties.map((item, i) => {
