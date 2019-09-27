@@ -1,5 +1,3 @@
-import store from "../store";
-
 export const requestMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.request) {
     const myRequest = fetch(`http://localhost:3000${action.request.url}`);
@@ -14,7 +12,7 @@ export const requestMiddleware = ({ dispatch, getState }) => next => action => {
       .catch(error => next(action.request.onFail(error)));
   } else {
     typeof action === "function"
-      ? action(store.dispatch, store.getState)
+      ? action(dispatch, getState)
       : next(action);
   }
 };

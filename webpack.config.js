@@ -10,13 +10,14 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
       { 
         test: /\.tsx?$/, 
-        loader: 'awesome-typescript-loader'
+        loader: 'ts-loader'
       },
       { 
         test: /\.js?$/,

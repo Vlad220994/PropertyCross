@@ -44,6 +44,7 @@
     "sass": "^1.22.10",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
+    "ts-loader": "^6.1.2",
     "webpack-dev-server": "^3.8.0"
   },
   "scripts": {
