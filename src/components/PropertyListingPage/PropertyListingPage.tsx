@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { connect } from 'react-redux';
 
 import { searchProperty } from "../../actions/getPropertyAction";
+import { addToFavoritesSuccess } from '../../actions/addToFavoritesAction';
 import './propertyListingPage.scss';
 
 const PropertyListingPage = (props) => {
@@ -12,6 +13,16 @@ const PropertyListingPage = (props) => {
   useEffect(() => {
     searchProperty(match.params.city, match.params.id);
   }, []);
+
+  const favesProperty = () => {
+    addToFavoritesSuccess(
+      match.params.city, 
+      match.params.id, 
+      property.title, 
+      property.imgUrl, 
+      property.priceFormatted
+    );
+  };
 
   const { 
     imgUrl, 
@@ -31,7 +42,7 @@ const PropertyListingPage = (props) => {
           <button type="button" className="btn btn-primary">Home</button>
         </Link>
         <div className="header-block__block1">Property Details</div>
-        <button type="button" className="btn btn-primary">+</button>
+        <button type="button" className="btn btn-primary" onClick={favesProperty}>+</button>
       </header>
       <main className="main-block">
         <h2 className="main-block__heading">{title}</h2>
@@ -54,7 +65,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  searchProperty
+  searchProperty,
+  addToFavoritesSuccess
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PropertyListingPage);

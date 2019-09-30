@@ -9,7 +9,7 @@ const ListedLocation = ({ cities }) => {
     const { longTitle, placeName } = item;
 
     return (
-      <Link to={`/${placeName}`} key={longTitle + i}>
+      <Link to={`/cities/${placeName}`} key={longTitle + i}>
         <li className="listed-location__list">
           <span className="listed-location__search">Search </span>
           <span className="listed-location__number">#{i + 1} </span>

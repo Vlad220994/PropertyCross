@@ -22,7 +22,7 @@ const ResultsComponent = ({ property, searchProperties, match }) => {
               <img src={imgUrl} className="image-block__image" alt={title} />
             </div>
             <div className="container-info">
-              <Link to={`/${location.placeName}/${id}`}>
+              <Link to={`/cities/${location.placeName}/${id}`}>
                 <h1 className="container-info__heading-title">{title}</h1>
               </Link>
               <h2 className="container-info__heading-price">
