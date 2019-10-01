@@ -1,27 +1,41 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { connect } from 'react-redux';
 
+import { FAVORITE_PROPERTIES } from "../../constants/favoritesConstants";
 import { searchProperty } from "../../actions/getPropertyAction";
-import { addToFavoritesSuccess } from '../../actions/addToFavoritesAction';
+import { addToFavoritesSuccess, removeFromFavoritesSuccess } from '../../actions/addToFavoritesAction';
 import './propertyListingPage.scss';
 
 const PropertyListingPage = (props) => {
   const { match, property, searchProperty } = props;
   
+  const getData = JSON.parse(localStorage.getItem(FAVORITE_PROPERTIES)) || [];
+  const newArr = getData.filter((item) => item.id === match.params.id);
+  
+  const mark = newArr.length ? "-" : "+";
+
+  const [state, setstate] = useState(mark);
+
   useEffect(() => {
     searchProperty(match.params.city, match.params.id);
   }, []);
 
   const favoriteProperty = () => {
-    addToFavoritesSuccess(
-      match.params.city, 
-      match.params.id, 
-      property.title, 
-      property.imgUrl, 
-      property.priceFormatted
-    );
+    if (state === "+") {
+      setstate("-");
+      addToFavoritesSuccess(
+        match.params.city, 
+        match.params.id, 
+        property.title, 
+        property.imgUrl, 
+        property.priceFormatted
+      );
+    } else {
+      setstate("+")
+      removeFromFavoritesSuccess(match.params.id);
+    }
   };
 
   const { 
@@ -42,7 +56,7 @@ const PropertyListingPage = (props) => {
           <button type="button" className="btn btn-primary">Home</button>
         </Link>
         <div className="header-block__block1">Property Details</div>
-        <button type="button" className="btn btn-primary" onClick={favoriteProperty}>+</button>
+        <button type="button" className="btn btn-primary" onClick={favoriteProperty}>{state}</button>
       </header>
       <main className="main-block">
         <h2 className="main-block__heading">{title}</h2>

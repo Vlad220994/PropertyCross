@@ -1,5 +1,6 @@
 import { 
-  ADD_TO_FAVORITES_SUCCESS, 
+  ADD_TO_FAVORITES_SUCCESS,
+  REMOVE_FROM_FAVORITES_SUCCESS,
   FAVORITE_PROPERTIES
 } from "../constants/favoritesConstants";
 
@@ -23,6 +24,19 @@ export const addToFavoritesSuccess = (location, id, title, imgUrl, price, ) => {
 
   return {
     type: ADD_TO_FAVORITES_SUCCESS,
+    payload: id
+  };
+};
+
+export const removeFromFavoritesSuccess = (id) => {
+  const getData = JSON.parse(localStorage.getItem(FAVORITE_PROPERTIES)) || [];
+
+  const filterArray = getData.filter((item) => item.id != id);
+
+  localStorage.setItem(FAVORITE_PROPERTIES, JSON.stringify(filterArray));
+
+  return {
+    type: REMOVE_FROM_FAVORITES_SUCCESS,
     payload: id
   };
 };
