@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 
 import './favorites.scss';
 
-const Favorites = ({getFavorites}) => {
+export const Favorites = () => {
   
-  const fav = getFavorites.map((item, i) => {
-
+  const favoritesArray = JSON.parse(localStorage.getItem("FAVORITE_PROPERTIES"));
+  const favoriteLocations = favoritesArray.map((item, i) => {
     const { location, value, id, title, imgUrl, price } = item;
 
     return(
@@ -37,15 +36,9 @@ const Favorites = ({getFavorites}) => {
       </header>
       <main className="main-block">
         <ul className="list-block">
-          {fav}
+          {favoriteLocations}
         </ul>
       </main>
     </Fragment>
   )
 };
-
-const mapStateToProps = (state) => ({
-  getFavorites: state.getFavoritesReducer.favoritesProperty
-});
-
-export default connect(mapStateToProps)(Favorites);
