@@ -14,7 +14,7 @@ const PropertyListingPage = (props) => {
     searchProperty(match.params.city, match.params.id);
   }, []);
 
-  const favesProperty = () => {
+  const favoriteProperty = () => {
     addToFavoritesSuccess(
       match.params.city, 
       match.params.id, 
@@ -42,7 +42,7 @@ const PropertyListingPage = (props) => {
           <button type="button" className="btn btn-primary">Home</button>
         </Link>
         <div className="header-block__block1">Property Details</div>
-        <button type="button" className="btn btn-primary" onClick={favesProperty}>+</button>
+        <button type="button" className="btn btn-primary" onClick={favoriteProperty}>+</button>
       </header>
       <main className="main-block">
         <h2 className="main-block__heading">{title}</h2>
