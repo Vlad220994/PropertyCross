@@ -3,38 +3,32 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { connect } from 'react-redux';
 
-import { FAVORITE_PROPERTIES } from "../../constants/favoritesConstants";
 import { searchProperty } from "../../actions/getPropertyAction";
 import { addToFavoritesSuccess, removeFromFavoritesSuccess } from '../../actions/addToFavoritesAction';
 import './propertyListingPage.scss';
 
 const PropertyListingPage = (props) => {
-  const { match, property, searchProperty } = props;
+  const { match, property, search, add, remove, favoriteArr } = props;
   
-  const getData = JSON.parse(localStorage.getItem(FAVORITE_PROPERTIES)) || [];
-  const newArr = getData.filter((item) => item.id === match.params.id);
+  const newArr = favoriteArr.filter((item) => item.id === match.params.id);
   
   const mark = newArr.length ? "-" : "+";
 
-  const [state, setstate] = useState(mark);
-
   useEffect(() => {
-    searchProperty(match.params.city, match.params.id);
+    search(match.params.city, match.params.id);
   }, []);
-
-  const favoriteProperty = () => {
-    if (state === "+") {
-      setstate("-");
-      addToFavoritesSuccess(
+ 
+  const favoriteProperty = () => {  
+    if (newArr.length) {
+      remove(match.params.id);
+    } else {
+      add(
         match.params.city, 
         match.params.id, 
         property.title, 
         property.imgUrl, 
         property.priceFormatted
       );
-    } else {
-      setstate("+")
-      removeFromFavoritesSuccess(match.params.id);
     }
   };
 
@@ -48,7 +42,7 @@ const PropertyListingPage = (props) => {
     propertyType, 
     listerName 
   } = property;
-  
+
   return(
     <div className="property-listing-page">
       <header className="header-block">
@@ -56,7 +50,7 @@ const PropertyListingPage = (props) => {
           <button type="button" className="btn btn-primary">Home</button>
         </Link>
         <div className="header-block__block1">Property Details</div>
-        <button type="button" className="btn btn-primary" onClick={favoriteProperty}>{state}</button>
+        <button type="button" className="btn btn-primary" onClick={favoriteProperty}>{mark}</button>
       </header>
       <main className="main-block">
         <h2 className="main-block__heading">{title}</h2>
@@ -75,12 +69,14 @@ const PropertyListingPage = (props) => {
 };
 
 const mapStateToProps = state => ({
-  property: state.getPropertyReducer.getBuilding
+  property: state.getPropertyReducer.getBuilding,
+  favoriteArr: state.favoriteReducer.data
 });
 
 const mapDispatchToProps = {
-  searchProperty,
-  addToFavoritesSuccess
+  search: searchProperty,
+  add: addToFavoritesSuccess,
+  remove: removeFromFavoritesSuccess
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PropertyListingPage);

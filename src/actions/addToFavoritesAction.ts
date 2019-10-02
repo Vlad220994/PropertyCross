@@ -24,19 +24,19 @@ export const addToFavoritesSuccess = (location, id, title, imgUrl, price, ) => {
 
   return {
     type: ADD_TO_FAVORITES_SUCCESS,
-    payload: id
+    payload: getResults
   };
 };
 
 export const removeFromFavoritesSuccess = (id) => {
   const getData = JSON.parse(localStorage.getItem(FAVORITE_PROPERTIES)) || [];
 
-  const filterArray = getData.filter((item) => item.id != id);
+  const filterArray = getData.filter((item) => item.id !== id);
 
   localStorage.setItem(FAVORITE_PROPERTIES, JSON.stringify(filterArray));
-
+   
   return {
     type: REMOVE_FROM_FAVORITES_SUCCESS,
-    payload: id
+    payload: filterArray
   };
 };
