@@ -8,7 +8,7 @@ import { addToFavoritesSuccess, removeFromFavoritesSuccess } from '../../actions
 import './propertyListingPage.scss';
 
 const PropertyListingPage = (props) => {
-  const { match, property, search, add, remove, favoriteArr } = props;
+  const { match, property, search, addToFavorite, removeFromFavorite, favoriteArr } = props;
   
   const newArr = favoriteArr.filter((item) => item.id === match.params.id);
   
@@ -20,9 +20,9 @@ const PropertyListingPage = (props) => {
  
   const favoriteProperty = () => {  
     if (newArr.length) {
-      remove(match.params.id);
+      removeFromFavorite(match.params.id);
     } else {
-      add(
+      addToFavorite(
         match.params.city, 
         match.params.id, 
         property.title, 
@@ -75,8 +75,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   search: searchProperty,
-  add: addToFavoritesSuccess,
-  remove: removeFromFavoritesSuccess
+  addToFavorite: addToFavoritesSuccess,
+  removeFromFavorite: removeFromFavoritesSuccess
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PropertyListingPage);
