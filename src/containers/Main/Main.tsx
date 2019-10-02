@@ -6,8 +6,8 @@ import { MainComponent } from '../../components/MainComponent/MainComponent';
 import { FETCH_STATUSES } from "../../constants/fetchStatuses";
 import { searchCity } from "../../actions/getLocationAction";
 import RecentSearches from "../../containers/RecentSearches/RecentSearches";
-import ListedLocation from "../../components/ListedLocation/ListedLocation";
-import Error from "../../components/Error/Error";
+import { ListedLocation } from "../../components/ListedLocation/ListedLocation";
+import { Error } from "../../components/Error/Error";
 import { Spinner } from "../../components/Spinner/Spinner";
 import "./main.scss";
 
@@ -25,19 +25,6 @@ const Main = (props: PropsType) => {
     props.searchCity(values);
   };
 
-  const component = () => {
-    switch (props.fetchStatus) {
-      case FETCH_STATUSES.REQUEST:
-        return <Spinner />;
-      case FETCH_STATUSES.SUCCESS:
-        return <ListedLocation cities={props.cities} />;
-      case FETCH_STATUSES.ERROR:
-        return <Error />;
-      default:
-        return <RecentSearches onClickHistory={onClickHistory} />;
-    }
-  };
-
   const onChange = ({ target }) => setValue(target.value);
 
   const onClick = (value: string) => () => {
@@ -45,7 +32,22 @@ const Main = (props: PropsType) => {
   };
 
   return (
-    <MainComponent component={component} value={value} onClick={onClick} onChange={onChange} />
+    <MainComponent value={value} onClick={onClick} onChange={onChange} >
+      {
+        () => {
+          switch (props.fetchStatus) {
+            case FETCH_STATUSES.REQUEST:
+              return <Spinner />;
+            case FETCH_STATUSES.SUCCESS:
+              return <ListedLocation cities={props.cities} />;
+            case FETCH_STATUSES.ERROR:
+              return <Error />;
+            default:
+              return <RecentSearches onClickHistory={onClickHistory} />;
+          }
+        }
+      }
+    </MainComponent>
   );
 };
 

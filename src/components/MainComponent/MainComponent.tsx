@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const MainComponent = ({onChange, value, onClick, component}) => {
+export const MainComponent = ({onChange, value, onClick, children}) => {
 
   return(
     <main className="main-block">
@@ -31,7 +31,7 @@ export const MainComponent = ({onChange, value, onClick, component}) => {
           />
         </div>
       </div>
-      {component()}
+      {children()}
     </main>
   );
 }

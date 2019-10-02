@@ -19,7 +19,9 @@ export const ResultsComponent = ({property}) => {
             <h2 className="container-info__heading-price">
               {priceFormatted}
             </h2>
-            <p className="container-info__paragraph">{summary}</p>
+            <p className="container-info__paragraph">
+              {summary}
+            </p>
           </div>
         </div>
       </li>
@@ -27,7 +29,9 @@ export const ResultsComponent = ({property}) => {
   });
 
   return(
-    <ul className="results">{buildings}</ul>
+    <ul className="results">
+      {buildings}
+    </ul>
   );
 };
 

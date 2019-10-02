@@ -19,4 +19,4 @@ export const SearchResultsPageComponent = ({ property, searchProperty }) => {
       <Results property={property} searchProperty={searchProperty} />
     </main>
   )
-}
+};
