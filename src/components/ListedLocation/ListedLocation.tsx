@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./listedLocation.scss";
 
-const ListedLocation = ({ cities }) => {
+export const ListedLocation = ({ cities }) => {
 
   const city = cities.map((item, i) => {
     const { longTitle, placeName } = item;
@@ -32,5 +32,3 @@ const ListedLocation = ({ cities }) => {
     </section>
   );
 };
-
-export default ListedLocation

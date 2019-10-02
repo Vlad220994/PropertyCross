@@ -1,13 +1,10 @@
 import * as React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import NumberOfMatches from "../NumberOfMatches/NumberOfMatches";
-import Results from "../Results/Results";
-import { searchProperty } from "../../actions/getPropertyAction";
-import "./searchResultsPage.scss";
+import Results from "../../containers/Results/Results";
 
-const SearchResultsPage = ({ property, searchProperty }) => {
+export const SearchResultsPageComponent = ({ property, searchProperty }) => {
   return (
     <main className="main">
       <div className="container">
@@ -21,15 +18,5 @@ const SearchResultsPage = ({ property, searchProperty }) => {
       </div>
       <Results property={property} searchProperty={searchProperty} />
     </main>
-  );
+  )
 };
-
-const mapStateToProps = state => ({
-  property: state.getPropertyReducer.getProperties
-});
-
-const mapDispatchToProps = () => ({
-  searchProperty
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsPage);

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
+import  { RecentSearchesComponent } from '../../components/RecentSearchesComponent/RecentSearchesComponent';
 import "./recentSearches.scss";
 
 const RecentSearches = ({ historyCities, onClickHistory }) => {
@@ -29,12 +30,7 @@ const RecentSearches = ({ historyCities, onClickHistory }) => {
   });
 
   return (
-    <section className="recent-searches">
-      <h2 className="recent-searches__heading">Recent Searches</h2>
-      <div className="recent-searches__block1">
-        <ul className="location-list">{location}</ul>
-      </div>
-    </section>
+    <RecentSearchesComponent location={location} />
   );
 };
 

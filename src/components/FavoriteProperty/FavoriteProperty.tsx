@@ -1,29 +1,8 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { connect } from 'react-redux';
 
-import { searchProperty } from "../../actions/getPropertyAction";
-import { addToFavoritesSuccess } from '../../actions/addToFavoritesAction';
-import './propertyListingPage.scss';
-
-const PropertyListingPage = (props) => {
-  const { match, property, searchProperty } = props;
-  
-  useEffect(() => {
-    searchProperty(match.params.city, match.params.id);
-  }, []);
-
-  const favoriteProperty = () => {
-    addToFavoritesSuccess(
-      match.params.city, 
-      match.params.id, 
-      property.title, 
-      property.imgUrl, 
-      property.priceFormatted
-    );
-  };
-
+export const FavoriteProperty = (props) => {
+  const { property, favoriteProperty, mark } = props;
   const { 
     imgUrl, 
     bedroomNumber, 
@@ -42,7 +21,7 @@ const PropertyListingPage = (props) => {
           <button type="button" className="btn btn-primary">Home</button>
         </Link>
         <div className="header-block__block1">Property Details</div>
-        <button type="button" className="btn btn-primary" onClick={favoriteProperty}>+</button>
+        <button type="button" className="btn btn-primary" onClick={favoriteProperty}>{mark}</button>
       </header>
       <main className="main-block">
         <h2 className="main-block__heading">{title}</h2>
@@ -58,15 +37,4 @@ const PropertyListingPage = (props) => {
       </main>
     </div>
   );
-};
-
-const mapStateToProps = state => ({
-  property: state.getPropertyReducer.getBuilding
-});
-
-const mapDispatchToProps = {
-  searchProperty,
-  addToFavoritesSuccess
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PropertyListingPage);
+}
