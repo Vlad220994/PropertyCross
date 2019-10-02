@@ -3,8 +3,8 @@ import { Router, Route } from "react-router-dom";
 
 import { Favorites } from "../Favorites/Favorites";
 import PropertySearch from "../PropertySearch/PropertySearch";
-import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
-import PropertyListingPage from "../PropertyListingPage/PropertyListingPage";
+import SearchResultsPage from "../../containers/SearchResultsPage/SearchResultsPage";
+import PropertyListingPage from "../../containers/PropertyListingPage/PropertyListingPage";
 
 const Routes = ({ history }) => {
   return (

@@ -1,37 +1,8 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { connect } from 'react-redux';
 
-import { searchProperty } from "../../actions/getPropertyAction";
-import { addToFavoritesSuccess, removeFromFavoritesSuccess } from '../../actions/addToFavoritesAction';
-import './propertyListingPage.scss';
-
-const PropertyListingPage = (props) => {
-  const { match, property, search, addToFavorite, removeFromFavorite, favoriteArr } = props;
-  
-  const newArr = favoriteArr.filter((item) => item.id === match.params.id);
-  
-  const mark = newArr.length ? "-" : "+";
-
-  useEffect(() => {
-    search(match.params.city, match.params.id);
-  }, []);
- 
-  const favoriteProperty = () => {  
-    if (newArr.length) {
-      removeFromFavorite(match.params.id);
-    } else {
-      addToFavorite(
-        match.params.city, 
-        match.params.id, 
-        property.title, 
-        property.imgUrl, 
-        property.priceFormatted
-      );
-    }
-  };
-
+export const FavoriteProperty = (props) => {
+  const {property, favoriteProperty, mark} = props;
   const { 
     imgUrl, 
     bedroomNumber, 
@@ -42,7 +13,7 @@ const PropertyListingPage = (props) => {
     propertyType, 
     listerName 
   } = property;
-
+  
   return(
     <div className="property-listing-page">
       <header className="header-block">
@@ -66,17 +37,4 @@ const PropertyListingPage = (props) => {
       </main>
     </div>
   );
-};
-
-const mapStateToProps = state => ({
-  property: state.getPropertyReducer.getBuilding,
-  favoriteArr: state.favoriteReducer.data
-});
-
-const mapDispatchToProps = {
-  search: searchProperty,
-  addToFavorite: addToFavoritesSuccess,
-  removeFromFavorite: removeFromFavoritesSuccess
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PropertyListingPage);
+}
