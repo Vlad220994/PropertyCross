@@ -32,6 +32,11 @@
   }
 }
 
+.pagination {
+  display: flex;
+  flex-direction: row;
+}
+
 @media (max-width: 320px) {
   .image-block__image {
     display: flex;

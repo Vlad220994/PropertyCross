@@ -1,23 +1,28 @@
 import * as React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { ResultsComponent } from '../../components/ResultsComponent/ResultsComponent';
 import { searchProperties } from "../../actions/getPropertyAction";
 import "./results.scss";
 
-const Results = ({ property, searchProperties, match }) => {
-  const { totalProperties, pageSize, currentPage } = property;
+const defaultPageSize = 10;
 
-  let pagesCount = Math.ceil(totalProperties / pageSize);
-  console.log(pagesCount);
+const Results = ({ property, searchProperties, match }) => {
+  const { totalResults, page } = property;
+  const [currentPage, setPage] = useState(page);
+  const pagesCount = Math.ceil(totalResults / defaultPageSize);
 
   useEffect(() => {
     searchProperties(match.params.city, currentPage);
-  }, []);
+  }, [currentPage]);
 
-  return <ResultsComponent property={property} pagesCount={pagesCount} />;
+  const getCurrentPage = (page) => {
+      setPage(page);
+  };
+
+  return <ResultsComponent property={property} pagesCount={pagesCount} getCurrentPage={getCurrentPage} />;
 };
 
 const mapStateToProps = state => ({

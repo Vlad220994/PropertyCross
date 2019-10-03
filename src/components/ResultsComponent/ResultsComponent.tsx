@@ -2,23 +2,14 @@ import * as React from "react";
 import { Fragment } from 'react';
 import { Link } from "react-router-dom";
 
-export const ResultsComponent = ({ property, pagesCount }) => {
-  const { properties , location, totalProperties, pageSize, currentPage } = property;
-  // console.log("property", property);
-  // console.log(pageSize);
-  // console.log(currentPage);
-  // console.log("totalProperties", totalProperties);
-  // console.log("properties.length", properties.length);
-
-  //let pagesCount = totalProperties / pageSize;
-  //console.log("pagesCount", pagesCount);
+export const ResultsComponent = ({ property, pagesCount, getCurrentPage }) => {
+  const { properties , location, totalResults, pageSize, currentPage } = property;
+  
   let pages = [];
-  //console.log(pages);
+  
   for(let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-  //console.log(pages);
-  
 
   const buildings = properties.map((item, i) => {
     const { id, imgUrl, priceFormatted, summary, title } = item;
@@ -46,12 +37,12 @@ export const ResultsComponent = ({ property, pagesCount }) => {
   });
 
   const pagination = pages.map((item, i) => {
-    return <li key={item + i}>{item}</li>
+    return <li key={item + i} onClick={() => getCurrentPage(i+1)}>{item}</li>
   });
 
   return(
     <Fragment>
-      <ul>
+      <ul className="pagination">
         {pagination}
       </ul>
       <ul className="results">
@@ -60,4 +51,3 @@ export const ResultsComponent = ({ property, pagesCount }) => {
     </Fragment> 
   );
 };
-
