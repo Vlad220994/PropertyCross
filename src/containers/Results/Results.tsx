@@ -8,16 +8,24 @@ import { searchProperties } from "../../actions/getPropertyAction";
 import "./results.scss";
 
 const Results = ({ property, searchProperties, match }) => {
-  
+  const { totalProperties, pageSize, currentPage } = property;
+
+  let pagesCount = Math.ceil(totalProperties / pageSize);
+  console.log(pagesCount);
+
   useEffect(() => {
-    searchProperties(match.params.city);
+    searchProperties(match.params.city, currentPage);
   }, []);
 
-  return <ResultsComponent property={property} />;
+  return <ResultsComponent property={property} pagesCount={pagesCount} />;
 };
+
+const mapStateToProps = state => ({
+  property: state.getPropertyReducer.getProperties
+});
 
 const mapDispatchToProps = {
   searchProperties
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(Results));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Results));

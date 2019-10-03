@@ -15,7 +15,10 @@ const initialState: {
     properties: [],
     location: {
       longTitle: ""
-    }
+    },
+    pageSize: 5,
+    totalProperties: 17,
+    currentPage: 1
   },
   getBuilding: {},
   fetchStatus: FETCH_STATUSES.IDLE

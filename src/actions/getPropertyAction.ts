@@ -25,9 +25,23 @@ export const getPropertyError = error => ({
   payload: error
 });
 
-export const searchProperties = (title) => {
+export const searchProperties = (title, page) => {
   const request = {
-    url: `/locations/${title}/properties`,
+    url: `/locations/${title}/properties?page=${page}`,
+    onStart: getPropertyRequest,
+    onSuccess: getPropertySuccess,
+    onError: getPropertyError
+  };
+
+  return {
+    type: REQUEST_PROPERTY,
+    request
+  };
+};
+
+export const searchPropertiesFromPagination = (title, page) => {
+  const request = {
+    url: `/locations/${title}/properties`, //?page=${page}
     onStart: getPropertyRequest,
     onSuccess: getPropertySuccess,
     onError: getPropertyError
