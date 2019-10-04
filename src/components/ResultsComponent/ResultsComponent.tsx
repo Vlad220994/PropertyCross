@@ -46,13 +46,13 @@ export const ResultsComponent = ({ property, pagesCount, getCurrentPage }) => {
             getCurrentPage(val.selected+1)
           )
         }
-        containerClassName={'pagination'}
-        subContainerClassName={'pages pagination'}
-        activeClassName={'active'}
-        pageClassName={'page-class-name'}
-        previousClassName={'previousClassName'}
-        nextClassName={'nextClassName'}
-        previousLinkClassName={'previousLinkClassName'}
+        containerClassName="pagination"
+        subContainerClassName="pages pagination"
+        activeClassName="active"
+        pageClassName="page-class-name"
+        previousClassName="previousClassName"
+        nextClassName="nextClassName"
+        previousLinkClassName="previousLinkClassName"
       />
       <ul className="results">
         {buildings}
