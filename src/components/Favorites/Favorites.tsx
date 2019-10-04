@@ -7,7 +7,7 @@ import './favorites.scss';
 
 export const Favorites = () => {
   
-  const favoritesArray = JSON.parse(localStorage.getItem(FAVORITE_PROPERTIES));
+  const favoritesArray = JSON.parse(localStorage.getItem(FAVORITE_PROPERTIES)) || [];
   const favoriteLocations = favoritesArray.map((item, i) => {
     const { location, value, id, title, imgUrl, price } = item;
 

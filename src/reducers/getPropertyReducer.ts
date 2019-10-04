@@ -15,7 +15,9 @@ const initialState: {
     properties: [],
     location: {
       longTitle: ""
-    }
+    },
+    page: 1,
+    totalResults: 10
   },
   getBuilding: {},
   fetchStatus: FETCH_STATUSES.IDLE

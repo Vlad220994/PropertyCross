@@ -1,11 +1,14 @@
 import * as React from "react";
+import { Fragment } from 'react';
 import { Link } from "react-router-dom";
+import ReactPaginate from 'react-paginate';
 
-export const ResultsComponent = ({property}) => {
-  const { properties = [], location="" } = property;
+export const ResultsComponent = ({ property, pagesCount, getCurrentPage }) => {
+  const { properties , location } = property;
 
   const buildings = properties.map((item, i) => {
     const { id, imgUrl, priceFormatted, summary, title } = item;
+
     return (
       <li className="results__element" key={id+i}>
         <div className="container">
@@ -29,9 +32,31 @@ export const ResultsComponent = ({property}) => {
   });
 
   return(
-    <ul className="results">
-      {buildings}
-    </ul>
+    <Fragment>
+      <ReactPaginate
+        previousLabel={'<'}
+        nextLabel={'>'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
+        pageCount={pagesCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={3}
+        onPageChange={
+          (val) => (
+            getCurrentPage(val.selected+1)
+          )
+        }
+        containerClassName="pagination"
+        subContainerClassName="pages pagination"
+        activeClassName="active"
+        pageClassName="page-class-name"
+        previousClassName="previousClassName"
+        nextClassName="nextClassName"
+        previousLinkClassName="previousLinkClassName"
+      />
+      <ul className="results">
+        {buildings}
+      </ul>
+    </Fragment> 
   );
 };
-

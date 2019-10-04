@@ -12,7 +12,7 @@ const SearchResultsPage = ({ property, searchProperty }) => {
 };
 
 const mapStateToProps = state => ({
-  property: state.getPropertyReducer.getProperties
+  property: state.getPropertyReducer.getProperties,
 });
 
 const mapDispatchToProps = () => ({

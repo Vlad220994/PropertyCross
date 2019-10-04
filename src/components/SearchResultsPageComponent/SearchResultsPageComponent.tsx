@@ -16,7 +16,7 @@ export const SearchResultsPageComponent = ({ property, searchProperty }) => {
         <h2 className="container__heading">{property.location.longTitle}</h2>
         <NumberOfMatches results={property.properties.length} />
       </div>
-      <Results property={property} searchProperty={searchProperty} />
+      <Results searchProperty={searchProperty} />
     </main>
   )
 };
