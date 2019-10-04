@@ -5,7 +5,7 @@ import { SearchResultsPageComponent } from "../../components/SearchResultsPageCo
 import { searchProperty } from "../../actions/getPropertyAction";
 import "./searchResultsPage.scss";
 
-const SearchResultsPage = ({ property, searchProperty, totalProperties }) => {
+const SearchResultsPage = ({ property, searchProperty }) => {
   return (
     <SearchResultsPageComponent property={property} searchProperty={searchProperty} />
   );
@@ -13,7 +13,6 @@ const SearchResultsPage = ({ property, searchProperty, totalProperties }) => {
 
 const mapStateToProps = state => ({
   property: state.getPropertyReducer.getProperties,
-  totalProperties: state.getPropertyReducer.getProperties.totalProperties
 });
 
 const mapDispatchToProps = () => ({

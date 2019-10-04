@@ -1,15 +1,10 @@
 import * as React from "react";
 import { Fragment } from 'react';
 import { Link } from "react-router-dom";
+import ReactPaginate from 'react-paginate';
 
 export const ResultsComponent = ({ property, pagesCount, getCurrentPage }) => {
-  const { properties , location, totalResults, pageSize, currentPage } = property;
-  
-  let pages = [];
-  
-  for(let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
+  const { properties , location } = property;
 
   const buildings = properties.map((item, i) => {
     const { id, imgUrl, priceFormatted, summary, title } = item;
@@ -36,15 +31,29 @@ export const ResultsComponent = ({ property, pagesCount, getCurrentPage }) => {
     );
   });
 
-  const pagination = pages.map((item, i) => {
-    return <li key={item + i} onClick={() => getCurrentPage(i+1)}>{item}</li>
-  });
-
   return(
     <Fragment>
-      <ul className="pagination">
-        {pagination}
-      </ul>
+      <ReactPaginate
+        previousLabel={'<'}
+        nextLabel={'>'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
+        pageCount={pagesCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={3}
+        onPageChange={
+          (val) => (
+            getCurrentPage(val.selected+1)
+          )
+        }
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
+        pageClassName={'page-class-name'}
+        previousClassName={'previousClassName'}
+        nextClassName={'nextClassName'}
+        previousLinkClassName={'previousLinkClassName'}
+      />
       <ul className="results">
         {buildings}
       </ul>
