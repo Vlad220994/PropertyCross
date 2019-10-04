@@ -41,7 +41,7 @@ export const searchProperties = (title, page) => {
 
 export const searchPropertiesFromPagination = (title, page) => {
   const request = {
-    url: `/locations/${title}/properties`, //?page=${page}
+    url: `/locations/${title}/properties`,
     onStart: getPropertyRequest,
     onSuccess: getPropertySuccess,
     onError: getPropertyError
