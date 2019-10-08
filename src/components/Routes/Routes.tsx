@@ -5,7 +5,7 @@ import { Favorites } from "../Favorites/Favorites";
 import PropertySearch from "../PropertySearch/PropertySearch";
 import SearchResultsPage from "../../containers/SearchResultsPage/SearchResultsPage";
 import PropertyListingPage from "../../containers/PropertyListingPage/PropertyListingPage";
-import  MyLocation from "../../containers/MyLocation/MyLocation";
+import MyLocationComponent from "../../containers/MyLocation/MyLocation";
 
 const Routes = ({ history }) => {
   return (
@@ -14,7 +14,7 @@ const Routes = ({ history }) => {
       <Route exact path="/cities/:city" component={SearchResultsPage} />
       <Route exact path="/cities/:city/:id" component={PropertyListingPage} />
       <Route exact path="/favorites" component={Favorites} />
-      <Route exact path="/my_location" component={MyLocation} />
+      <Route exact path="/my_location" component={MyLocationComponent} />
     </Router>
   );
 };

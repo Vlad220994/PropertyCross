@@ -17,7 +17,7 @@ type location = {
 };
 
 export const MyLocationComponent = (props) => {
-  const { watchLocation, settings, city, fetchStatus, searchCityByCoordinates} = props;
+  const { watchLocation, settings, city, fetchStatus, searchCityByCoordinate} = props;
 
   const { latitude, longitude, timestamp, accuracy, error }: location = usePosition(watchLocation, settings);
 
@@ -28,7 +28,7 @@ export const MyLocationComponent = (props) => {
   const onChangeCenterLong = ({ target }) => setCenterLongValue(target.value);
 
   const onSearchByCoords = () => {
-    searchCityByCoordinates(centerLatValue, centerLongValue);
+    searchCityByCoordinate(centerLatValue, centerLongValue);
   };
 
   const results = !latitude && !error ? 

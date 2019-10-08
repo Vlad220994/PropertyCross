@@ -5,10 +5,10 @@ import { MyLocationComponent } from '../../components/MyLocationComponent/MyLoca
 import { searchCityByCoordinates } from '../../actions/getLocationAction';
 import './myLocation.scss';
 
-const MyLocation = (props) => {
+(props) => {
   const { city, fetchStatus, searchCityByCoordinate } = props;
 
-  return <MyLocationComponent city={city} fetchStatus={fetchStatus} searchCityByCoordinates={searchCityByCoordinate} />
+  return <MyLocationComponent city={city} fetchStatus={fetchStatus} searchCityByCoordinate={searchCityByCoordinate} />
 };
 
 const mapStateToProps = state => ({
@@ -20,4 +20,4 @@ const mapDispatchToProps = {
   searchCityByCoordinate: searchCityByCoordinates
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyLocation)
+export default connect(mapStateToProps, mapDispatchToProps)(MyLocationComponent)
