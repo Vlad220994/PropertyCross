@@ -6,7 +6,7 @@ const defaultSettings = {
   maximumAge: 0,
 };
 
-export const usePosition = (watch = false, settings = defaultSettings) => {
+export const usePosition = (watchLocation = false, settings = defaultSettings) => {
   const [position, setPosition] = useState({});
   const [error, setError] = useState(null);
 
@@ -16,10 +16,11 @@ export const usePosition = (watch = false, settings = defaultSettings) => {
       longitude: coords.longitude,
       accuracy: coords.accuracy,
       timestamp,
+      error
     });
   };
 
-  const onError = (error: {message: string}) => {
+  const onError = (error) => {
     setError(error.message);
   };
 
@@ -32,7 +33,7 @@ export const usePosition = (watch = false, settings = defaultSettings) => {
 
     let watcher = null;
     
-    if (watch) {
+    if (watchLocation) {
       watcher = geo.watchPosition(onChange, onError, settings);
     } else {
       geo.getCurrentPosition(onChange, onError, settings);
@@ -41,5 +42,5 @@ export const usePosition = (watch = false, settings = defaultSettings) => {
     return () => watcher && geo.clearWatch(watcher);
   }, [settings]);
 
-  return {...position, error};
+  return {...position, ...error};
 };
