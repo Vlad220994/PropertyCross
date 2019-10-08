@@ -12,11 +12,16 @@
 
     .container {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
+
+      .image-block {
+        width: 40%;
+      }
 
       .container-info {
         margin-left: 10px;
+        width: 60%;
 
         .container-info__heading-title {
           margin-bottom: 15px;
@@ -62,11 +67,46 @@
   }
 }
 
-@media (max-width: 320px) {
-  .image-block__image {
+@media (max-width: 660px) {
+  .pagination {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    margin: 10px 0;
+  
+    .page-class-name, .break-me, .previousClassName, .nextClassName {
+      margin: 0 5px;
+      padding: 5px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      color: rgb(30, 108, 210);
+       
+      a {
+        text-decoration: none;
+        padding: 5px;
+       }
+    }
+  
+    li:hover {
+      background: rgb(241, 238, 238);
+      margin: 0 5px;
+      cursor: pointer;
+      color: rgb(30, 108, 210);
+    }
+    
+    .active {
+      font-weight: bold;
+    }
+  }
+  .results .results__element .container {
+    .image-block {
+      width: 80%;
+      .image-block__image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 
   .container-info {
@@ -74,6 +114,39 @@
 
     .container-info__heading-price {
       font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+  
+    .page-class-name, .break-me, .previousClassName, .nextClassName {
+      margin: 0 3px;
+      padding: 3px;
+      border: 1px solid gray;
+      border-radius: 3px;
+      color: rgb(30, 108, 210);
+       
+      a {
+        text-decoration: none;
+        padding: 3px;
+       }
+    }
+  
+    li:hover {
+      background: rgb(241, 238, 238);
+      margin: 0 3px;
+      cursor: pointer;
+      color: rgb(30, 108, 210);
+    }
+    
+    .active {
+      font-weight: bold;
     }
   }
 }

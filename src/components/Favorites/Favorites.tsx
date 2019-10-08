@@ -35,7 +35,7 @@ export const Favorites = () => {
         </Link>
         <h2 className="header-block__heading">Favorites</h2>
       </header>
-      <main className="main-block">
+      <main className="main-container">
         <ul className="list-block">
           {favoriteLocations}
         </ul>

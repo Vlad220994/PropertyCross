@@ -1,0 +1,18 @@
+.my-location {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .heading-block {
+    margin: 20px 0;
+  }
+
+  .form-block {
+    margin-top: 20px;
+
+    .form-control {
+      margin-bottom: 10px;
+    }
+  }
+}

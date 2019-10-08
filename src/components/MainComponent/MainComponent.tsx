@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 export const MainComponent = ({onChange, value, onClick, children}) => {
 
@@ -24,11 +25,13 @@ export const MainComponent = ({onChange, value, onClick, children}) => {
             className="btn btn-primary"
             onClick={onClick(value)}
           />
-          <input
-            type="button"
-            value="My location"
-            className="btn btn-primary"
-          />
+          <Link to="/my_location">
+            <input
+              type="button"
+              value="My location"
+              className="btn btn-primary"
+            />
+          </Link>
         </div>
       </div>
       {children()}
